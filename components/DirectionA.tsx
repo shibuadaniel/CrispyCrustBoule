@@ -945,16 +945,16 @@ const DirectionA = () => {
               · 04 · THE PROCESS ·
             </div>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 40 : 56, margin: "0 0 40px", fontWeight: 400, lineHeight: 1.05 }}>
-              Five days, mostly<br/><span style={{ fontStyle: "italic", color: rust }}>waiting.</span>
+              Three days, mostly<br/><span style={{ fontStyle: "italic", color: rust }}>waiting.</span>
             </h2>
 
             <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 28 }}>
               {[
-                { d: "Mon", t: "Feed Oho", n: "50g flour, 50g water. Doubles in 6 hours. Smells like green apples on a good day." },
+                { d: "Tue", t: "Feed Oho", n: "50g flour, 50g water. Doubles in 6 hours. Smells like green apples on a good day." },
                 { d: "Tue", t: "Mix the dough", n: "Flour, water, salt, levain. Rest 30 min. Then fold every half hour, four times." },
                 { d: "Tue pm", t: "Bulk ferment", n: "On the counter until it's puffy and jiggly. About 5 hours in winter, 3 in summer." },
-                { d: "Wed", t: "Shape & cold proof", n: "Pre-shape, bench rest, final shape into a banneton. Into the fridge, overnight." },
-                { d: "Thu", t: "Bake", n: "Dutch oven, 500°F, 20 min lid on, 25 min lid off. Listen for the crackle." }
+                { d: "Overnight", t: "Cold proof", n: "Pre-shape, bench rest, final shape into a banneton. Into the fridge until morning." },
+                { d: "Wed am", t: "Bake", n: "Dutch oven, 500°F, 20 min lid on, 25 min lid off. Listen for the crackle." }
               ].map((step, i) => (
                 <li key={i} style={{
                   display: "grid",
@@ -1015,7 +1015,7 @@ const DirectionA = () => {
                 been kept alive too long to end up forgotten on a shelf.
               </p>
               <div style={{ marginTop: 32, fontFamily: "'Caveat', cursive", fontSize: isMobile ? 22 : 30, color: "#d4a574" }}>
-                hello@crispycrustboule.co
+                crispycrustboule@gmail.com
               </div>
             </div>
             <div style={{ paddingLeft: 0, paddingTop: 0 }}>
