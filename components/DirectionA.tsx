@@ -641,7 +641,6 @@ const DirectionA = () => {
           <>
             <div style={{
               padding: "56px 24px 40px",
-              borderBottom: `1.5px solid ${ink}`,
               textAlign: "center",
               position: "relative",
               background: "rgba(244,235,217,0.4)"
@@ -795,12 +794,21 @@ const DirectionA = () => {
               ].map((step, i) => (
                 <li key={i} style={{
                   display: "grid",
-                  gridTemplateColumns: isMobile ? "48px 72px 1fr" : "60px 100px 1fr",
+                  gridTemplateColumns: isMobile ? "56px 1fr" : "60px 100px 1fr",
                   gap: isMobile ? 12 : 24,
                   alignItems: "baseline"
                 }}>
-                  <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 28 : 36, color: rust, fontStyle: "italic" }}>0{i+1}</span>
-                  <span style={{ fontFamily: "'Caveat', cursive", fontSize: isMobile ? 19 : 24, color: sage }}>{step.d}</span>
+                  {isMobile ? (
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 2 }}>
+                      <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 28, color: rust, fontStyle: "italic" }}>0{i+1}</span>
+                      <span style={{ fontFamily: "'Caveat', cursive", fontSize: 18, color: sage, lineHeight: 1 }}>{step.d}</span>
+                    </div>
+                  ) : (
+                    <>
+                      <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, color: rust, fontStyle: "italic" }}>0{i+1}</span>
+                      <span style={{ fontFamily: "'Caveat', cursive", fontSize: 24, color: sage }}>{step.d}</span>
+                    </>
+                  )}
                   <div>
                     <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 19 : 24, marginBottom: 4 }}>{step.t}</div>
                     <div style={{ fontSize: isMobile ? 13 : 15, color: muted, lineHeight: 1.6 }}>{step.n}</div>
@@ -815,7 +823,7 @@ const DirectionA = () => {
       {/* CONTACT */}
       <Reveal>
         <section style={{
-          margin: isMobile ? "32px 24px 60px" : "40px 120px 80px",
+          margin: isMobile ? "32px 0 0" : "40px 120px 80px",
           padding: isMobile ? "40px 28px" : "64px 56px",
           background: ink, color: "#f4ebd9", position: "relative"
         }}>
@@ -846,7 +854,7 @@ const DirectionA = () => {
                 hello@crispycrustboule.co
               </div>
             </div>
-            <div style={{ borderLeft: isMobile ? "none" : "1px dashed rgba(244,235,217,0.3)", borderTop: isMobile ? "1px dashed rgba(244,235,217,0.3)" : "none", paddingLeft: isMobile ? 0 : 40, paddingTop: isMobile ? 32 : 0 }}>
+            <div style={{ paddingLeft: 0, paddingTop: 0 }}>
               <div style={{ fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 18, color: "#d4a574" }}>
                 Adopt a piece of Oho
               </div>
