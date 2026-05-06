@@ -363,35 +363,39 @@ const DirectionA = () => {
             </div>
             <h1 style={{
               fontFamily: "'DM Serif Display', serif",
-              fontSize: isMobile ? 72 : 124,
+              fontSize: isMobile ? 56 : 98,
               lineHeight: 0.94, margin: 0, fontWeight: 400,
-              letterSpacing: "-0.02em"
+              letterSpacing: "-0.02em",
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: isMobile ? 10 : 36
             }}>
               <span style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "96px 1fr" : "160px 1fr",
-                gap: isMobile ? 14 : 22,
-                alignItems: "end"
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                columnGap: isMobile ? 16 : 28,
+                flexWrap: "nowrap",
+                width: "fit-content",
+                maxWidth: "100%"
               }}>
                 <span
                   aria-hidden
                   style={{
-                    width: "100%",
-                    height: isMobile ? 70 : 116,
-                    backgroundColor: rust,
-                    display: "inline-block",
-                    flexShrink: 0,
-                    WebkitMaskImage: "url('/images/logo.svg')",
-                    maskImage: "url('/images/logo.svg')",
-                    WebkitMaskRepeat: "no-repeat",
-                    maskRepeat: "no-repeat",
-                    WebkitMaskPosition: "left center",
-                    maskPosition: "left center",
-                    WebkitMaskSize: "contain",
-                    maskSize: "contain"
+                    width: isMobile ? 106 : 188,
+                    height: isMobile ? 78 : 138,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    flexShrink: 0
                   }}
-                />
-                <span style={{ textAlign: "right", display: "block" }}>
+                >
+                  <img
+                    src="/images/logo.svg"
+                    alt=""
+                    style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                  />
+                </span>
+                <span style={{ textAlign: "right", display: "block", flex: "0 0 auto" }}>
                   Bread,<br/>
                   <span style={{ fontStyle: "italic", color: rust }}>slowly.</span>
                 </span>
