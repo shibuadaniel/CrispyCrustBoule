@@ -305,6 +305,7 @@ const DirectionA = () => {
   const muted = "#5a4a32";
 
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileLoafIndex, setMobileLoafIndex] = useState(0);
 
   useEffect(() => {
     if (document.getElementById("dirA-fonts")) return;
@@ -330,6 +331,14 @@ const DirectionA = () => {
     { name: "Miche", level: "the giant", note: "a 2kg whole-grain wheel, lasts a whole week", time: "48 hr", weight: "2000g · 82% hyd." },
     { name: "Sesame Semolina", level: "the sunny one", note: "durum flour, golden crumb, sesame everywhere", time: "24 hr", weight: "800g · 76% hyd." }
   ];
+
+  const goToPrevLoaf = () => {
+    setMobileLoafIndex((current) => (current - 1 + loaves.length) % loaves.length);
+  };
+
+  const goToNextLoaf = () => {
+    setMobileLoafIndex((current) => (current + 1) % loaves.length);
+  };
 
   const px = (desktop: string | number, mobile: string | number) => isMobile ? mobile : desktop;
 
@@ -539,7 +548,7 @@ const DirectionA = () => {
           gap: isMobile ? 32 : 16,
           alignItems: "center"
         }}>
-          <Reveal>
+          <Reveal style={isMobile ? { order: 2 } : undefined}>
             <div>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: "0.25em", color: rust, marginBottom: 12 }}>
                 · 02 · MEET OHO ·
@@ -581,7 +590,7 @@ const DirectionA = () => {
             </div>
           </Reveal>
 
-          <Reveal delay={isMobile ? 0 : 150}>
+          <Reveal delay={isMobile ? 0 : 150} style={isMobile ? { order: 1 } : undefined}>
             <div style={{ position: "relative", height: isMobile ? 320 : 540 }}>
               <div style={{
                 position: "absolute", top: 20, left: isMobile ? 0 : 40, width: isMobile ? "85%" : 320,
@@ -651,12 +660,78 @@ const DirectionA = () => {
               </div>
               <Squiggle width={80} color={rust} style={{ margin: "20px auto 0", opacity: 0.6, display: "block" }} />
             </div>
-            <div style={{ padding: "32px 24px", display: "grid", gridTemplateColumns: "1fr", gap: 48 }}>
-              {loaves.map((loaf, i) => (
-                <Reveal key={i} delay={i * 80}>
-                  <LoafCard loaf={loaf} idx={i} isMobile={true} />
-                </Reveal>
-              ))}
+            <div style={{ padding: "32px 24px 40px" }}>
+              <Reveal key={mobileLoafIndex}>
+                <LoafCard loaf={loaves[mobileLoafIndex]} idx={mobileLoafIndex} isMobile={true} />
+              </Reveal>
+              <div style={{
+                marginTop: 28,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center"
+              }}>
+                <button
+                  onClick={goToPrevLoaf}
+                  aria-label="Show previous loaf"
+                  style={{
+                    border: `1px solid ${muted}`,
+                    background: "transparent",
+                    color: ink,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 11,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    padding: "10px 14px",
+                    cursor: "pointer"
+                  }}
+                >
+                  ← Prev
+                </button>
+                <div style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 11,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: muted
+                }}>
+                  {String(mobileLoafIndex + 1).padStart(2, "0")} / {String(loaves.length).padStart(2, "0")}
+                </div>
+                <button
+                  onClick={goToNextLoaf}
+                  aria-label="Show next loaf"
+                  style={{
+                    border: `1px solid ${muted}`,
+                    background: "transparent",
+                    color: ink,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 11,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    padding: "10px 14px",
+                    cursor: "pointer"
+                  }}
+                >
+                  Next →
+                </button>
+              </div>
+              <div style={{ marginTop: 18, display: "flex", justifyContent: "center", gap: 8 }}>
+                {loaves.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setMobileLoafIndex(idx)}
+                    aria-label={`Show loaf ${idx + 1}`}
+                    style={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      border: "none",
+                      background: idx === mobileLoafIndex ? rust : "rgba(90,74,50,0.35)",
+                      padding: 0,
+                      cursor: "pointer"
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </>
         ) : (
