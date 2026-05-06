@@ -345,27 +345,6 @@ const DirectionA = () => {
   return (
     <Paper style={{ width: "100%", minHeight: 3600, position: "relative", overflow: "hidden" }}>
 
-      {/* NAV */}
-      <div style={{
-        display: "flex", justifyContent: "space-between", alignItems: "center",
-        padding: isMobile ? "20px 24px" : "28px 120px",
-        borderBottom: `1px solid rgba(60,30,10,0.2)`,
-        position: "relative", zIndex: 2
-      }}>
-        <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 18 : 22, letterSpacing: "0.02em" }}>
-          CrispyCrustBoule<span style={{ color: rust }}>.</span>
-        </div>
-        {/* Nav links — hidden on mobile */}
-        {!isMobile && (
-          <div style={{ display: "flex", gap: 36, fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase" }}>
-            <span>The Craft</span><span>Loaves</span><span>Process</span><span>Visit</span>
-          </div>
-        )}
-        <div style={{ fontFamily: "'Caveat', cursive", fontSize: isMobile ? 18 : 22, color: rust, transform: "rotate(-3deg)" }}>
-          est. 2019 ✦
-        </div>
-      </div>
-
       {/* HERO */}
       <section style={{ padding: isMobile ? "40px 24px 32px" : "70px 120px 60px", position: "relative" }}>
         <div style={{
@@ -388,8 +367,35 @@ const DirectionA = () => {
               lineHeight: 0.94, margin: 0, fontWeight: 400,
               letterSpacing: "-0.02em"
             }}>
-              Bread,<br/>
-              <span style={{ fontStyle: "italic", color: rust }}>slowly.</span>
+              <span style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "96px 1fr" : "160px 1fr",
+                gap: isMobile ? 14 : 22,
+                alignItems: "end"
+              }}>
+                <span
+                  aria-hidden
+                  style={{
+                    width: "100%",
+                    height: isMobile ? 70 : 116,
+                    backgroundColor: rust,
+                    display: "inline-block",
+                    flexShrink: 0,
+                    WebkitMaskImage: "url('/images/logo.svg')",
+                    maskImage: "url('/images/logo.svg')",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "left center",
+                    maskPosition: "left center",
+                    WebkitMaskSize: "contain",
+                    maskSize: "contain"
+                  }}
+                />
+                <span style={{ textAlign: "right", display: "block" }}>
+                  Bread,<br/>
+                  <span style={{ fontStyle: "italic", color: rust }}>slowly.</span>
+                </span>
+              </span>
             </h1>
             <p style={{ fontSize: isMobile ? 15 : 18, lineHeight: 1.6, marginTop: isMobile ? 20 : 32, maxWidth: 460, color: muted }}>
               CrispyCrustBoule is a home showcase of seven years&apos; worth of
