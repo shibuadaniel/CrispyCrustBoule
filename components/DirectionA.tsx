@@ -143,9 +143,21 @@ const Reveal = ({ children, delay = 0, y = 24, style }: {
 
 // ---------- loaf card with hover ----------
 type Loaf = { name: string; level: string; note: string; time: string; weight: string };
+
+const LOAF_IMAGE_PATHS = [
+  "/images/loaves/loaf1-cinnamonraisin.png",
+  "/images/loaves/loaf2-cranberrywalnut.png",
+  "/images/loaves/loaf3-jalepinocheddar.png",
+  "/images/loaves/loaf4-quinoarye.png",
+  "/images/loaves/loaf5-doublechocolate.png",
+  "/images/loaves/loaf6-wholewheat.png"
+] as const;
+
 const LoafCard = ({ loaf, idx, isMobile }: { loaf: Loaf; idx: number; isMobile: boolean }) => {
   const [hovered, setHovered] = useState(false);
   const baseTilt = idx === 1 ? -1 : 1;
+  const photoHeight = isMobile ? 300 : 400;
+  const src = LOAF_IMAGE_PATHS[idx] ?? LOAF_IMAGE_PATHS[0];
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -169,7 +181,46 @@ const LoafCard = ({ loaf, idx, isMobile }: { loaf: Loaf; idx: number; isMobile: 
         transition: "transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)",
         boxShadow: hovered ? "0 14px 32px rgba(60,30,10,0.25)" : "0 4px 14px rgba(0,0,0,0.18)",
       }}>
-        <PlaceholderImg label={`loaf · 0${idx + 1}`} height={isMobile ? 200 : 300} sublabel={hovered ? loaf.weight : ""} />
+        <div style={{
+          height: photoHeight,
+          width: "100%",
+          border: "1px solid rgba(60,30,10,0.3)",
+          background: "#e8dcc4",
+          position: "relative",
+          overflow: "hidden"
+        }}>
+          <img
+            src={src}
+            alt={loaf.name}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              display: "block"
+            }}
+          />
+          {hovered && (
+            <div style={{
+              position: "absolute",
+              left: "50%",
+              bottom: 10,
+              transform: "translateX(-50%)",
+              background: "#e8dcc4",
+              padding: "4px 10px",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 9,
+              letterSpacing: "0.08em",
+              color: "#3a2a18",
+              textTransform: "uppercase",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+              maxWidth: "92%",
+              textAlign: "center"
+            }}>
+              {loaf.weight}
+            </div>
+          )}
+        </div>
       </div>
 
       <svg width="60" height="60" viewBox="0 0 60 60" style={{
@@ -368,12 +419,12 @@ const DirectionA = () => {
   }, []);
 
   const loaves: Loaf[] = [
-    { name: "The Country Boule", level: "the everyday", note: "the one that started it all", time: "24 hr", weight: "900g · 78% hyd." },
-    { name: "Seeded Rye", level: "the dark one", note: "caraway, fennel, a little brown sugar", time: "36 hr", weight: "850g · 72% hyd." },
-    { name: "Olive & Rosemary Fougasse", level: "the leaf", note: "studded with olives, eaten warm with hands", time: "18 hr", weight: "700g · 80% hyd." },
-    { name: "Walnut & Cranberry", level: "the holiday", note: "toasted walnuts, dried cranberries, a touch of honey", time: "30 hr", weight: "850g · 75% hyd." },
-    { name: "Miche", level: "the giant", note: "a 2kg whole-grain wheel, lasts a whole week", time: "48 hr", weight: "2000g · 82% hyd." },
-    { name: "Sesame Semolina", level: "the sunny one", note: "durum flour, golden crumb, sesame everywhere", time: "24 hr", weight: "800g · 76% hyd." }
+    { name: "Cinnamon raisin", level: "sweet & spiced", note: "Soft crumb with a cinnamon swirl and plenty of plump raisins — weekend toast energy.", time: "24 hr", weight: "900g · 78% hyd." },
+    { name: "Cranberry walnut", level: "tart & nutty", note: "Dried cranberries, toasted walnuts, and a touch of sweetness — sharp, earthy, a little festive.", time: "30 hr", weight: "850g · 75% hyd." },
+    { name: "Jalapeño cheddar", level: "savory & bold", note: "Diced jalapeño and sharp cheddar folded through the dough — best warm, with something cold to drink.", time: "24 hr", weight: "850g · 76% hyd." },
+    { name: "Rye + tri-color quinoa", level: "hearty rye", note: "Rye-forward sourdough with tri-color quinoa in the mix — nutty chew, deep color, serious slice.", time: "36 hr", weight: "850g · 72% hyd." },
+    { name: "Double chocolate", level: "dark & rich", note: "Cocoa in the dough plus chocolate in the crumb — closer to cake than sandwich bread, in the best way.", time: "24 hr", weight: "900g · 78% hyd." },
+    { name: "Whole wheat", level: "everyday table", note: "100% whole grain, slow ferment, straight wheat flavor — the loaf that earns a permanent spot on the board.", time: "24 hr", weight: "900g · 78% hyd." }
   ];
 
   const goToPrevLoaf = () => {
@@ -474,7 +525,7 @@ const DirectionA = () => {
               fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
               letterSpacing: "0.18em", textTransform: "uppercase"
             }}>
-              <span>seven loaves</span>
+              <span>six loaves</span>
               <span>· wild yeast ·</span>
               <span>· 72 hr ferment ·</span>
               <span>· stone hearth ·</span>
@@ -579,10 +630,11 @@ const DirectionA = () => {
                   is Oho — and it&apos;s the reason any of this exists.
                 </p>
                 <p>
-                  CrispyCrustBoule isn&apos;t a shop. It&apos;s a record. Seven loaves
-                  worth keeping, the process behind each one, and a few
-                  notes from the kitchen along the way. No classes, no
-                  schedule. Just bread that took its time.
+                  CrispyCrustBoule isn&apos;t a shop. It&apos;s a record. Six loaves
+                  worth keeping — cinnamon raisin, cranberry walnut, jalapeño cheddar,
+                  rye with tri-color quinoa, double chocolate, and whole wheat — plus
+                  the process behind each one and a few notes from the kitchen along
+                  the way. No classes, no schedule. Just bread that took its time.
                 </p>
               </div>
 
@@ -767,7 +819,7 @@ const DirectionA = () => {
                 What we bake<br/><span style={{ fontStyle: "italic", color: rust }}>together.</span>
               </h2>
               <div style={{ fontFamily: "'Caveat', cursive", fontSize: 18, color: muted, marginTop: 16 }}>
-                six loaves — each one fed by oho ✦
+                Cinnamon raisin through whole wheat — six loaves, each one fed by oho ✦
               </div>
               <Squiggle width={80} color={rust} style={{ margin: "20px auto 0", opacity: 0.6, display: "block" }} />
             </div>
@@ -859,7 +911,7 @@ const DirectionA = () => {
                   </h2>
                 </div>
                 <div style={{ fontFamily: "'Caveat', cursive", fontSize: 22, color: muted, maxWidth: 320, transform: "rotate(-1deg)" }}>
-                  seven loaves on the rotation — each one fed by oho, each one its own afternoon ✦
+                  The lineup: sweet, savory, rye, chocolate, and a true whole wheat — all on rotation, all from oho ✦
                 </div>
               </div>
             </Reveal>
