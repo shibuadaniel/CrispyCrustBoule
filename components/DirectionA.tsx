@@ -214,6 +214,50 @@ const LoafCard = ({ loaf, idx, isMobile }: { loaf: Loaf; idx: number; isMobile: 
 };
 
 // ---------- HERO collage ----------
+const HeroFirstLoafImg = ({ height, isMobile }: { height: number; isMobile: boolean }) => (
+  <div style={{
+    height,
+    width: "100%",
+    border: "1px solid rgba(60,30,10,0.3)",
+    boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
+    position: "relative",
+    overflow: "hidden",
+    background: "#e8dcc4"
+  }}>
+    <img
+      src="/images/hero/first-loaf.png"
+      alt="The very first boule"
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center 38%",
+        display: "block"
+      }}
+    />
+    <span style={{
+      position: "absolute",
+      left: "50%",
+      bottom: isMobile ? 22 : 26,
+      transform: "translateX(-50%)",
+      background: "#e8dcc4",
+      padding: isMobile ? "5px 10px" : "6px 14px",
+      color: "#3a2a18",
+      fontFamily: "'JetBrains Mono', monospace",
+      fontSize: isMobile ? 9 : 10,
+      letterSpacing: "0.06em",
+      textTransform: "uppercase",
+      textAlign: "center",
+      whiteSpace: "nowrap",
+      maxWidth: "calc(100% - 20px)",
+      boxSizing: "border-box",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.12)"
+    }}>
+      THE VERY FIRST BOULE
+    </span>
+  </div>
+);
+
 const HeroCollage = ({ isMobile }: { isMobile: boolean }) => {
   const ink = "#2a1f17";
   const rust = "#a64b2a";
@@ -223,17 +267,17 @@ const HeroCollage = ({ isMobile }: { isMobile: boolean }) => {
     return (
       <div style={{ position: "relative", width: "100%", marginTop: 40 }}>
         <div style={{ position: "relative", transform: "rotate(1.5deg)" }}>
-          <Tape rotate={-6} top={-14} left={40} />
-          <Tape rotate={5} top={-10} right={40} />
-          <PlaceholderImg label="the boule · cooling" height={260} />
+          <Tape rotate={-6} top={-9} left={48} width={72} height={17} />
+          <Tape rotate={5} top={-7} right={48} width={72} height={17} />
+          <HeroFirstLoafImg height={260} isMobile={true} />
           <div style={{
-            position: "absolute", bottom: -18, right: -10,
-            background: "#f4ebd9", padding: "6px 12px",
-            fontFamily: "'Caveat', cursive", fontSize: 17, color: ink,
+            position: "absolute", bottom: -14, right: -7,
+            background: "#f4ebd9", padding: "3px 7px",
+            fontFamily: "'Caveat', cursive", fontSize: 12, color: ink,
             transform: "rotate(4deg)",
-            boxShadow: "0 3px 10px rgba(0,0,0,0.15)"
+            boxShadow: "0 2px 8px rgba(0,0,0,0.12)"
           }}>
-            loaf no. 412 ✦ tuesday
+            July 14, 2020 @ 5:37 PM
           </div>
         </div>
         <StarDoodle size={20} color={rust} style={{ position: "absolute", top: 12, right: 12, transform: "rotate(20deg)" }} />
@@ -244,17 +288,17 @@ const HeroCollage = ({ isMobile }: { isMobile: boolean }) => {
   return (
     <div style={{ position: "relative", width: "100%", height: 580 }}>
       <div style={{ position: "absolute", top: 20, right: 40, width: 360, transform: "rotate(1.5deg)" }}>
-        <Tape rotate={-6} top={-14} left={40} />
-        <Tape rotate={5} top={-10} right={40} />
-        <PlaceholderImg label="the boule · cooling" height={420} />
+        <Tape rotate={-6} top={-10} left={52} width={82} height={19} />
+        <Tape rotate={5} top={-8} right={52} width={82} height={19} />
+        <HeroFirstLoafImg height={420} isMobile={false} />
         <div style={{
-          position: "absolute", bottom: -22, right: -14,
-          background: "#f4ebd9", padding: "8px 14px",
-          fontFamily: "'Caveat', cursive", fontSize: 20, color: ink,
+          position: "absolute", bottom: -15, right: -9,
+          background: "#f4ebd9", padding: "4px 9px",
+          fontFamily: "'Caveat', cursive", fontSize: 13, color: ink,
           transform: "rotate(4deg)",
-          boxShadow: "0 3px 10px rgba(0,0,0,0.15)"
+          boxShadow: "0 2px 8px rgba(0,0,0,0.12)"
         }}>
-          loaf no. 412 ✦ tuesday
+          July 14, 2020 @ 5:37 PM
         </div>
       </div>
 
@@ -451,7 +495,46 @@ const DirectionA = () => {
           <Reveal>
             <div style={{ position: "relative" }}>
               <Tape rotate={-4} top={-12} left={20} width={130} />
-              <PlaceholderImg label="the kitchen counter" height={isMobile ? 260 : 420} tilt={-1.5} />
+              <div style={{
+                height: isMobile ? 260 : 420,
+                width: "100%",
+                position: "relative",
+                transform: "rotate(-1.5deg)",
+                border: "1px solid rgba(60,30,10,0.3)",
+                boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
+                overflow: "hidden",
+                background: "#e8dcc4"
+              }}>
+                <img
+                  src="/images/hero/the-beginning.png"
+                  alt="The kitchen counter"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center 72%",
+                    display: "block"
+                  }}
+                />
+                <span style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  background: "#e8dcc4",
+                  padding: "4px 10px",
+                  color: "#3a2a18",
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: isMobile ? 10 : 12,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  maxWidth: "90%",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+                }}>
+                  the kitchen counter
+                </span>
+              </div>
               <div style={{
                 position: "absolute", bottom: 16, left: 16,
                 fontFamily: "'Caveat', cursive", fontSize: isMobile ? 15 : 18,
@@ -609,12 +692,31 @@ const DirectionA = () => {
                 boxShadow: "0 14px 32px rgba(0,0,0,0.22)"
               }}>
                 <Tape rotate={4} top={-12} left={90} width={120} color="rgba(166,75,42,0.5)" />
-                <PlaceholderImg label="oho · this morning" height={isMobile ? 200 : 360} />
+                <div style={{
+                  position: "relative",
+                  height: isMobile ? 200 : 360,
+                  width: "100%",
+                  overflow: "hidden",
+                  background: "#e8dcc4",
+                  border: "1px solid rgba(60,30,10,0.2)"
+                }}>
+                  <img
+                    src="/images/OHO-the-starter.png"
+                    alt="Oho in action"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      display: "block"
+                    }}
+                  />
+                </div>
                 <div style={{
                   position: "absolute", bottom: 14, left: 0, right: 0, textAlign: "center",
                   fontFamily: "'Caveat', cursive", fontSize: isMobile ? 17 : 22, color: ink
                 }}>
-                  oho, fed at 7am ✦
+                  Oho in action! ✦
                 </div>
               </div>
 
