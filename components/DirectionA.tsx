@@ -945,7 +945,7 @@ const DirectionA = () => {
               · 04 · THE PROCESS ·
             </div>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 40 : 56, margin: "0 0 40px", fontWeight: 400, lineHeight: 1.05 }}>
-              Three days, mostly<br/><span style={{ fontStyle: "italic", color: rust }}>waiting.</span>
+              3 days, mostly<br/><span style={{ fontStyle: "italic", color: rust }}>waiting.</span>
             </h2>
 
             <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 28 }}>
