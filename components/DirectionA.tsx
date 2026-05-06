@@ -712,7 +712,7 @@ const DirectionA = () => {
                 fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? 12 : 13, lineHeight: 1.5
               }}>
                 {[
-                  ["born", "a tuesday in march, 2020"],
+                  ["born", "a tuesday in july, 2020"],
                   ["fed with", "50/50 rye + bread flour, filtered water"],
                   ["lives in", "a 16oz weck jar, on the counter"],
                   ["smells like", "green apples on a good day, vinegar on a bad one"],
