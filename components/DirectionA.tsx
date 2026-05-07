@@ -259,10 +259,13 @@ const HeroFirstLoafImg = ({ height, isMobile }: { height: number; isMobile: bool
       src="/images/hero/first-loaf.png"
       alt="The very first boule"
       style={{
-        width: "100%",
-        height: "100%",
+        position: "absolute",
+        inset: -3,
+        width: "calc(100% + 6px)",
+        height: "calc(100% + 6px)",
         objectFit: "cover",
-        objectPosition: "center 38%",
+        objectPosition: "center 62%",
+        transform: "scale(1.03)",
         display: "block"
       }}
     />
