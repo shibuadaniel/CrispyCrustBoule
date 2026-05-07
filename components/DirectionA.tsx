@@ -667,11 +667,11 @@ const DirectionA = () => {
               }}>
                 {[
                   ["born", "a tuesday in july, 2020"],
-                  ["fed with", "50/50 rye + bread flour, filtered water"],
-                  ["lives in", "a 16oz weck jar, on the counter"],
+                  ["fed with", "10/90 dark rye + all-purpose flour, water"],
+                  ["lives in", "a 6oz mason jar, in the fridge"],
                   ["smells like", "green apples on a good day, vinegar on a bad one"],
                   ["doubles in", "≈ 6 hours @ 72°F"],
-                  ["has survived", "two moves, one power outage, a long vacation"],
+                  ["has survived", "one power outage, multiple long vacations"],
                   ["temperament", "patient, opinionated about temperature"]
                 ].map(([k, v], i) => (
                   <React.Fragment key={i}>
