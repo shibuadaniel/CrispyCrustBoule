@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState, ReactNode, CSSProperties } from 're
 // ---------- atoms ----------
 const Paper = ({ children, style }: { children: ReactNode; style?: CSSProperties }) => (
   <div style={{
-    background: "#e8dcc4",
+    backgroundColor: "#e8dcc4",
     backgroundImage: `
       radial-gradient(circle at 12% 18%, rgba(80,50,20,0.06) 0px, transparent 2px),
       radial-gradient(circle at 78% 42%, rgba(80,50,20,0.05) 0px, transparent 1.5px),
@@ -28,7 +28,7 @@ const Tape = ({ rotate = -3, top, left, right, bottom, width = 110, height = 28,
 }) => (
   <div style={{
     position: "absolute", top, left, right, bottom, width, height,
-    background: color,
+    backgroundColor: color,
     backgroundImage: "repeating-linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,0.18) 14px 16px)",
     transform: `rotate(${rotate}deg)`,
     boxShadow: "0 2px 6px rgba(0,0,0,0.12)",
@@ -95,26 +95,6 @@ const Squiggle = ({ width = 120, color = "#7a8b5c", style }: { width?: number; c
   <svg width={width} height={20} viewBox="0 0 120 20" style={style}>
     <path d="M 4 10 Q 14 2 24 10 T 44 10 T 64 10 T 84 10 T 104 10 T 116 10" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
   </svg>
-);
-
-const PlaceholderImg = ({ label, height = 280, tilt = 0, sublabel, style }: {
-  label: string; height?: number; tilt?: number; sublabel?: string; style?: CSSProperties;
-}) => (
-  <div style={{
-    height, width: "100%",
-    background: `repeating-linear-gradient(45deg, #c9b48a 0 8px, #b8a378 8px 16px)`,
-    border: "1px solid rgba(60,30,10,0.3)",
-    boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
-    transform: `rotate(${tilt}deg)`,
-    display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-    color: "#3a2a18", fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
-    letterSpacing: "0.1em", textTransform: "uppercase",
-    position: "relative",
-    ...style
-  }}>
-    <span style={{ background: "#e8dcc4", padding: "4px 10px" }}>{label}</span>
-    {sublabel && <span style={{ marginTop: 6, fontSize: 9, opacity: 0.7 }}>{sublabel}</span>}
-  </div>
 );
 
 // ---------- scroll reveal ----------
@@ -200,7 +180,7 @@ const LoafCard = ({ loaf, idx, isMobile }: { loaf: Loaf; idx: number; isMobile: 
               display: "block"
             }}
           />
-          {hovered && (
+          {hovered && isMobile && (
             <div style={{
               position: "absolute",
               left: "50%",
@@ -286,26 +266,53 @@ const HeroFirstLoafImg = ({ height, isMobile }: { height: number; isMobile: bool
         display: "block"
       }}
     />
-    <span style={{
-      position: "absolute",
-      left: "50%",
-      bottom: isMobile ? 22 : 26,
-      transform: "translateX(-50%)",
-      background: "#e8dcc4",
-      padding: isMobile ? "5px 10px" : "6px 14px",
-      color: "#3a2a18",
-      fontFamily: "'JetBrains Mono', monospace",
-      fontSize: isMobile ? 9 : 10,
-      letterSpacing: "0.06em",
-      textTransform: "uppercase",
-      textAlign: "center",
-      whiteSpace: "nowrap",
-      maxWidth: "calc(100% - 20px)",
-      boxSizing: "border-box",
-      boxShadow: "0 2px 8px rgba(0,0,0,0.12)"
-    }}>
-      THE VERY FIRST BOULE
-    </span>
+    {isMobile && (
+      <span style={{
+        position: "absolute",
+        left: "50%",
+        bottom: 22,
+        transform: "translateX(-50%)",
+        background: "#e8dcc4",
+        padding: "5px 10px",
+        color: "#3a2a18",
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: 9,
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        textAlign: "center",
+        whiteSpace: "nowrap",
+        maxWidth: "calc(100% - 20px)",
+        boxSizing: "border-box",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.12)"
+      }}>
+        THE VERY FIRST BOULE
+      </span>
+    )}
+  </div>
+);
+
+/** Desktop hero collage only — small polaroid-style loaf shots */
+const HeroCollageLoafImg = ({ src, height, alt }: { src: string; height: number; alt: string }) => (
+  <div style={{
+    height,
+    width: "100%",
+    border: "1px solid rgba(60,30,10,0.3)",
+    boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
+    overflow: "hidden",
+    background: "#e8dcc4",
+    position: "relative"
+  }}>
+    <img
+      src={src}
+      alt={alt}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center",
+        display: "block"
+      }}
+    />
   </div>
 );
 
@@ -342,44 +349,20 @@ const HeroCollage = ({ isMobile }: { isMobile: boolean }) => {
         <Tape rotate={-6} top={-10} left={52} width={82} height={19} />
         <Tape rotate={5} top={-8} right={52} width={82} height={19} />
         <HeroFirstLoafImg height={420} isMobile={false} />
-        <div style={{
-          position: "absolute", bottom: -15, right: -9,
-          background: "#f4ebd9", padding: "4px 9px",
-          fontFamily: "'Caveat', cursive", fontSize: 13, color: ink,
-          transform: "rotate(4deg)",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.12)"
-        }}>
-          July 14, 2020 @ 5:37 PM
-        </div>
       </div>
 
       <div style={{ position: "absolute", top: 0, left: 20, width: 220, transform: "rotate(-4deg)" }}>
         <Tape rotate={3} top={-10} left={30} width={90} color="rgba(166,75,42,0.4)" />
-        <PlaceholderImg label="oho · the starter" height={240} />
-        <div style={{
-          position: "absolute", top: 8, left: 8,
-          background: "#fff", padding: "4px 8px",
-          fontFamily: "'JetBrains Mono', monospace", fontSize: 9,
-          letterSpacing: "0.2em", color: ink,
-          boxShadow: "0 1px 4px rgba(0,0,0,0.15)"
-        }}>
-          DAY 6
-        </div>
+        <HeroCollageLoafImg src="/images/hero/hero-loaf2.png" height={240} alt="Boule from the home oven" />
       </div>
 
       <div style={{ position: "absolute", top: 280, left: 60, width: 200, transform: "rotate(3deg)" }}>
         <Tape rotate={-8} top={-10} right={30} width={80} color="rgba(122,139,92,0.5)" />
-        <PlaceholderImg label="hands · folding" height={220} />
+        <HeroCollageLoafImg src="/images/hero/hero-loaf3.png" height={220} alt="Loaf on the peel" />
       </div>
 
       <div style={{ position: "absolute", bottom: 10, left: 290, width: 170, transform: "rotate(-2deg)", zIndex: 3 }}>
-        <PlaceholderImg label="the crumb" height={170} />
-        <div style={{
-          position: "absolute", bottom: -16, left: 12,
-          fontFamily: "'Caveat', cursive", fontSize: 16, color: rust, transform: "rotate(-2deg)"
-        }}>
-          ← look at this open crumb
-        </div>
+        <HeroCollageLoafImg src="/images/hero/hero-loaf4.png" height={170} alt="Open crumb" />
       </div>
 
       <WheatDoodle size={56} style={{ position: "absolute", top: -10, right: -20, transform: "rotate(15deg)", opacity: 0.7 }} />
@@ -497,7 +480,7 @@ const DirectionA = () => {
               </span>
             </h1>
             <p style={{ fontSize: isMobile ? 15 : 18, lineHeight: 1.6, marginTop: isMobile ? 20 : 32, maxWidth: 460, color: muted }}>
-              CrispyCrustBoule is a home showcase of seven years&apos; worth of
+              CrispyCrustBoule is a home showcase of six years&apos; worth of
               sourdough — the loaves, the failures, the recipes that finally
               clicked. No shop, no schedule. Just a working kitchen, a
               six-year-old starter named Oho, and a quiet record of what
@@ -515,25 +498,6 @@ const DirectionA = () => {
           </Reveal>
         </div>
 
-        {/* Section divider — hidden on mobile */}
-        {!isMobile && (
-          <Reveal delay={300}>
-            <div style={{
-              marginTop: 80, padding: "18px 0",
-              borderTop: `1.5px solid ${ink}`, borderBottom: `1.5px solid ${ink}`,
-              display: "flex", justifyContent: "space-between",
-              fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
-              letterSpacing: "0.18em", textTransform: "uppercase"
-            }}>
-              <span>six loaves</span>
-              <span>· wild yeast ·</span>
-              <span>· 72 hr ferment ·</span>
-              <span>· stone hearth ·</span>
-              <span>· no shortcuts ·</span>
-              <span>one starter</span>
-            </div>
-          </Reveal>
-        )}
       </section>
 
       {/* OUR STORY */}
@@ -541,7 +505,8 @@ const DirectionA = () => {
         <div style={{
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr",
-          gap: isMobile ? 32 : 80
+          gap: isMobile ? 32 : 80,
+          alignItems: isMobile ? undefined : "center"
         }}>
           <Reveal>
             <div style={{ position: "relative" }}>
@@ -567,46 +532,34 @@ const DirectionA = () => {
                     display: "block"
                   }}
                 />
-                <span style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                  background: "#e8dcc4",
-                  padding: "4px 10px",
-                  color: "#3a2a18",
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: isMobile ? 10 : 12,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                  maxWidth: "90%",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
-                }}>
-                  the kitchen counter
-                </span>
-              </div>
-              <div style={{
-                position: "absolute", bottom: 16, left: 16,
-                fontFamily: "'Caveat', cursive", fontSize: isMobile ? 15 : 18,
-                color: "#fff", textShadow: "0 1px 4px rgba(0,0,0,0.6)"
-              }}>
-                flour on everything, always
-              </div>
-              {!isMobile && (
-                <div style={{
-                  position: "absolute", bottom: -40, right: -28, width: 130,
-                  background: "#fff", padding: "8px 8px 22px",
-                  transform: "rotate(7deg)",
-                  boxShadow: "0 6px 16px rgba(0,0,0,0.18)"
-                }}>
-                  <PlaceholderImg label="oho · day 6" height={110} />
-                  <div style={{
-                    position: "absolute", bottom: 4, left: 0, right: 0, textAlign: "center",
-                    fontFamily: "'Caveat', cursive", fontSize: 13, color: ink
+                {isMobile && (
+                  <span style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                    background: "#e8dcc4",
+                    padding: "4px 10px",
+                    color: "#3a2a18",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 10,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    textAlign: "center",
+                    maxWidth: "90%",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
                   }}>
-                    the boss
-                  </div>
+                    the kitchen counter
+                  </span>
+                )}
+              </div>
+              {isMobile && (
+                <div style={{
+                  position: "absolute", bottom: 16, left: 16,
+                  fontFamily: "'Caveat', cursive", fontSize: 15,
+                  color: "#fff", textShadow: "0 1px 4px rgba(0,0,0,0.6)"
+                }}>
+                  flour on everything, always
                 </div>
               )}
             </div>
@@ -622,12 +575,13 @@ const DirectionA = () => {
                 of bubbles on the<br/>
                 kitchen counter.
               </h2>
-              <div style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.75, color: muted, columnCount: isMobile ? 1 : 2, columnGap: 32 }}>
+              <div style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.75, color: muted, maxWidth: isMobile ? undefined : 640 }}>
                 <p style={{ marginTop: 0 }}>
-                  Three dead starters, then one that took. Fed every morning
-                  with a little rye, a little patience, mostly stubbornness.
-                  That fourth jar is still alive on the counter — its name
-                  is Oho — and it&apos;s the reason any of this exists.
+                  The very first starter took off — bubbles, rise, the whole
+                  deal. Fed every morning with a little rye, a little patience,
+                  mostly stubbornness. That same jar is still alive on the
+                  counter — its name is Oho — and it&apos;s the reason any of
+                  this exists.
                 </p>
                 <p>
                   CrispyCrustBoule isn&apos;t a shop. It&apos;s a record. Six loaves
@@ -667,7 +621,7 @@ const DirectionA = () => {
                 <div style={{ fontFamily: "'Caveat', cursive", fontSize: isMobile ? 22 : 28, color: ink }}>
                   — the baker <span style={{ color: rust }}>✦</span>
                 </div>
-                {!isMobile && (
+                {isMobile && (
                   <div style={{ fontFamily: "'Caveat', cursive", fontSize: 18, color: sage, transform: "rotate(-2deg)", maxWidth: 220, textAlign: "right" }}>
                     p.s. — oho is the one running the show, mostly ✦
                   </div>
@@ -764,33 +718,15 @@ const DirectionA = () => {
                     }}
                   />
                 </div>
-                <div style={{
-                  position: "absolute", bottom: 14, left: 0, right: 0, textAlign: "center",
-                  fontFamily: "'Caveat', cursive", fontSize: isMobile ? 17 : 22, color: ink
-                }}>
-                  Oho in action! ✦
-                </div>
+                {isMobile && (
+                  <div style={{
+                    position: "absolute", bottom: 14, left: 0, right: 0, textAlign: "center",
+                    fontFamily: "'Caveat', cursive", fontSize: 17, color: ink
+                  }}>
+                    Oho in action! ✦
+                  </div>
+                )}
               </div>
-
-              {!isMobile && (
-                <div style={{
-                  position: "absolute", bottom: 0, right: 20, width: 250,
-                  background: "#f4ebd9", padding: "16px 18px",
-                  transform: "rotate(4deg)",
-                  border: `1px dashed ${rust}`,
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.15)"
-                }}>
-                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.18em", color: rust, marginBottom: 10 }}>
-                    FEEDING CARD · WK 312
-                  </div>
-                  <div style={{ fontFamily: "'Caveat', cursive", fontSize: 18, lineHeight: 1.5, color: ink }}>
-                    mon ✓ tue ✓ wed ✓<br/>
-                    thu ✓ fri ✓ sat —<br/>
-                    sun: rest in fridge
-                  </div>
-                  <StarDoodle size={20} color={sage} style={{ position: "absolute", top: -10, right: -8, transform: "rotate(20deg)" }} />
-                </div>
-              )}
 
               <Squiggle width={120} color={rust} style={{ position: "absolute", top: 10, right: 0, transform: "rotate(20deg)", opacity: 0.6 }} />
             </div>
@@ -932,7 +868,7 @@ const DirectionA = () => {
         <section style={{
           margin: isMobile ? "32px 24px" : "60px 120px",
           padding: isMobile ? "40px 24px 40px 40px" : "60px 56px",
-          background: "#f4ebd9",
+          backgroundColor: "#f4ebd9",
           backgroundImage: "repeating-linear-gradient(transparent, transparent 38px, rgba(120,90,40,0.18) 38px, rgba(120,90,40,0.18) 39px)",
           position: "relative",
           boxShadow: "0 4px 18px rgba(0,0,0,0.08)"
