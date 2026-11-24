@@ -1,0 +1,49 @@
+<!-- CrispyCrustBoule home page: entry card for the gluten-free trials page.
+     Paste the <section> where section 05 belongs (between 04 The Process and 06 Adopt),
+     and the <style> block into the page's CSS.
+     Set href to wherever the trials page lives on the site (placeholder: /gluten-free).
+     Update "Current best" and "Up next" when a new trial is baked. -->
+<section class="gf-entry" aria-labelledby="gf-entry-title">
+  <p class="gf-entry__label">· 05 · gluten-free trials ·</p>
+  <a class="gf-entry__card" href="/gluten-free">
+    <h2 class="gf-entry__title" id="gf-entry-title">Gluten-free, slowly.</h2>
+    <p class="gf-entry__text">Working toward a gluten-free sourdough loaf, one trial at a time. These loaves use their own gluten-free starter, not Oho.</p>
+    <dl class="gf-entry__facts">
+      <div><dt>Current best</dt><dd>v1.3 · best loaf yet</dd></div>
+      <div><dt>Up next</dt><dd>v1.4 · not baked yet</dd></div>
+    </dl>
+    <span class="gf-entry__go">See every trial <span aria-hidden="true">→</span></span>
+  </a>
+</section>
+
+<style>
+.gf-entry {
+  --gf-accent: #8a5a2b;
+  --gf-surface: #fffdf9;
+  --gf-line: #e3dbcf;
+  --gf-muted: #6f665b;
+  display: grid; gap: 14px;
+  max-width: 640px; margin-inline: auto;
+}
+.gf-entry__label {
+  margin: 0; font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gf-accent);
+}
+.gf-entry__card {
+  display: grid; gap: 12px; padding: 22px;
+  border: 1px solid var(--gf-accent); border-radius: 16px; background: var(--gf-surface);
+  color: inherit; text-decoration: none; font-family: inherit;
+  transition: transform .15s ease;
+}
+@media (prefers-reduced-motion: no-preference) { .gf-entry__card:hover { transform: translateY(-2px); } }
+.gf-entry__card:focus-visible { outline: 2px solid var(--gf-accent); outline-offset: 3px; }
+.gf-entry__title { margin: 0; font-size: clamp(1.7rem, 6vw, 2.2rem); line-height: 1.1; font-style: italic; }
+.gf-entry__text { margin: 0; color: var(--gf-muted); max-width: 52ch; }
+.gf-entry__facts { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 28px; border-top: 1px solid var(--gf-line); padding-top: 12px; }
+.gf-entry__facts dt {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gf-muted);
+}
+.gf-entry__facts dd { margin: 0; font-weight: 600; }
+.gf-entry__go { color: var(--gf-accent); font-weight: 600; }
+</style>
