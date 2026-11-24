@@ -1,0 +1,988 @@
+{
+  "_note": "Source of truth for the gluten-free trials pages. Newest first. Facts come from SD's GF Sourdough Versions page; keep numbers exactly as written.",
+  "trials": [
+    {
+      "slug": "v1-4",
+      "version": "v1.4",
+      "date": "2026-11-22",
+      "dateLabel": "22 Nov 2026",
+      "status": "up-next",
+      "resultTag": "Not baked yet",
+      "tone": "pending",
+      "summary": "275 g water and a full 25–30% warm rise before the fridge.",
+      "meta": [
+        {
+          "label": "Yield",
+          "value": "1 loaf"
+        },
+        {
+          "label": "Hands-on",
+          "value": "~30 min"
+        },
+        {
+          "label": "Proof",
+          "value": "25–30% warm + overnight cold"
+        },
+        {
+          "label": "Bake",
+          "value": "40–45 min"
+        },
+        {
+          "label": "Hydration",
+          "value": "~92%"
+        }
+      ],
+      "changes": [
+        {
+          "lead": "Water 260 g → 275 g.",
+          "text": "That takes hydration from about 88% to about 92%. A slightly looser dough expands more in the oven. The psyllium still gels for 10 minutes."
+        },
+        {
+          "lead": "Warm rise must reach 25–30% before the fridge.",
+          "text": "A strip of tape on the pan or banneton at the dough's starting level shows the rise. It gets as long as it needs."
+        },
+        {
+          "lead": "Optional: 5 more minutes uncovered at 425°F",
+          "text": "if the sides still look pale once the inside is at temperature."
+        }
+      ],
+      "why": "v1.3 was the best loaf yet, but I'd like a little more oven spring. Two things limit spring here: a fairly stiff dough, and the warm rise stopping at about 15% instead of 25%. The extra water is the one real recipe change. The proof target was already in v1.3 and is now spelled out so it actually gets hit. Everything else is exactly as v1.3.",
+      "result": "Not baked yet. Things to watch: how the dough handles at 275 g water, how long the warm rise takes to reach 25–30%, the oven spring compared with v1.3, the crumb, and the side colour.",
+      "photos": [],
+      "photoNote": "Not baked yet. Photos go here after the bake.",
+      "starter": {
+        "title": "Starter build",
+        "rows": [
+          {
+            "item": "Starter (from the jar)",
+            "grams": "50",
+            "percent": "42%"
+          },
+          {
+            "group": "Fresh flour · 120 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "20",
+            "percent": "17%"
+          },
+          {
+            "note": "Flour mix · 100 g, equal thirds:"
+          },
+          {
+            "item": "Light buckwheat flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Sorghum flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "group": "Water"
+          },
+          {
+            "item": "Water",
+            "grams": "120",
+            "percent": "100%"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Mix the flour.",
+            "text": "Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest. Weigh the 20 g KA GF flour separately."
+          },
+          {
+            "title": "Feed.",
+            "text": "Stir 50 g starter, 20 g KA GF flour, 100 g flour mix and 120 g water together until smooth. Mark the level on the jar."
+          },
+          {
+            "title": "Wait for peak.",
+            "text": "Leave it covered at room temperature until it's bubbly, domed and well risen. Use it at or just before peak."
+          }
+        ],
+        "foot": "This makes about 290 g. The dough uses 80 g, so about 210 g is left to keep and feed next time."
+      },
+      "ingredients": {
+        "rows": [
+          {
+            "group": "Flour blend · 360 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "198",
+            "percent": "55%"
+          },
+          {
+            "item": "Tapioca starch",
+            "grams": "90",
+            "percent": "25%"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "72",
+            "percent": "20%"
+          },
+          {
+            "group": "Everything else"
+          },
+          {
+            "item": "Active GF starter, at peak (see Starter build)",
+            "grams": "80",
+            "percent": "22%"
+          },
+          {
+            "item": "Psyllium husk powder",
+            "grams": "15",
+            "percent": "4.2%"
+          },
+          {
+            "item": "Egg whites, 2 large",
+            "grams": "~60",
+            "percent": "17%"
+          },
+          {
+            "item": "Water, plus more only if stiff",
+            "grams": "275",
+            "percent": "76%",
+            "tag": "Changed",
+            "was": "was 260 g in v1–v1.3, 290 g in v0"
+          },
+          {
+            "item": "Salt",
+            "grams": "7",
+            "percent": "1.9%"
+          }
+        ],
+        "foot": "Baker's % is against the 360 g flour blend. Hydration of ~92% (was ~88%) counts the water, the starter's water (100% starter, so 40 g water in 80 g) and the egg whites' water."
+      },
+      "method": [
+        {
+          "title": "Gel the psyllium.",
+          "text": "Whisk the psyllium into the 275 g water right away so it doesn't clump, then let it sit 10 minutes."
+        },
+        {
+          "title": "Wet mix.",
+          "text": "Whisk in the egg whites and starter."
+        },
+        {
+          "title": "Add dry.",
+          "text": "Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don't add water yet."
+        },
+        {
+          "title": "Rest.",
+          "text": "Cover and leave 30 minutes so the flours and psyllium hydrate. It will be a little softer and stickier than v1.3, which is expected. Only if it still feels stiff or cracks when pressed, work in water a tablespoon at a time."
+        },
+        {
+          "title": "Shape.",
+          "text": "With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula. Stick a strip of tape on the outside of the pan or banneton level with the top of the dough."
+        },
+        {
+          "title": "Warm rise to 25–30%.",
+          "text": "Cover and set it in the oven with only the light on (about 75–80°F). Let it rise 25–30% above the tape: a gentle dome forms, and a fingertip dent springs back slowly. Go by the rise, not the clock. It may take noticeably longer than last time. Don't take it past about 30%, because it keeps rising a little in the fridge.",
+          "tag": "Changed",
+          "note": "Last time it went into the fridge at about 15%."
+        },
+        {
+          "title": "Cold proof overnight.",
+          "text": "Move it, still covered, to the fridge at 38–40°F overnight."
+        },
+        {
+          "title": "Preheat.",
+          "text": "In the morning, take the dough out of the fridge first, then heat the oven to 450°F (230°C) with the Dutch oven inside for 45–60 minutes. If the dough still looks flat once the oven is hot, leave it on the counter another 1–2 hours before baking."
+        },
+        {
+          "title": "Score.",
+          "text": "Just before baking, dust the top with rice flour and make one confident slash about 1 cm deep, holding the blade at a shallow angle."
+        },
+        {
+          "title": "Bake covered.",
+          "text": "Lower the loaf into the Dutch oven on its parchment, put the lid on, and bake 30 minutes at 450°F."
+        },
+        {
+          "title": "Bake uncovered, cooler.",
+          "text": "Take the lid off and drop the oven to 425°F (220°C). Bake 10–15 minutes more, just until the inside reads 205–210°F (96–99°C), then pull it right away.",
+          "tag": "Changed",
+          "note": "Optional (new in v1.4): if the sides still look pale once it's at temperature, give it up to 5 minutes more."
+        },
+        {
+          "title": "Soften the crust (optional).",
+          "text": "While it's hot, brush the crust with a little oil or melted butter, then cool it under a clean towel. Once it's fully cool, keep it in a bag."
+        },
+        {
+          "title": "Cool.",
+          "text": "Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy."
+        }
+      ]
+    },
+    {
+      "slug": "v1-3",
+      "version": "v1.3",
+      "date": "2026-11-22",
+      "dateLabel": "22 Nov 2026",
+      "status": "current-best",
+      "resultTag": "Best yet",
+      "tone": "good",
+      "summary": "Shorter, cooler lid-off bake and an overnight cold proof.",
+      "meta": [
+        {
+          "label": "Yield",
+          "value": "1 loaf"
+        },
+        {
+          "label": "Hands-on",
+          "value": "~30 min"
+        },
+        {
+          "label": "Proof",
+          "value": "~25% warm + overnight cold"
+        },
+        {
+          "label": "Bake",
+          "value": "40–45 min"
+        },
+        {
+          "label": "Hydration",
+          "value": "~88%"
+        }
+      ],
+      "changes": [
+        {
+          "lead": "Shorter uncovered bake: 20–25 min → 10–15 min.",
+          "text": "Still 30 minutes with the lid on, then lid off only until the loaf reads 205–210°F inside."
+        },
+        {
+          "lead": "Oven drops to 425°F when the lid comes off",
+          "text": "(was 450°F the whole bake)."
+        },
+        {
+          "lead": "Overnight cold proof.",
+          "text": "A warm rise to about 25% in the oven with only the light on (~75–80°F), then the fridge overnight at 38–40°F, baked straight from cold. This replaces the 2–4 h room-temperature proof to ~50%."
+        },
+        {
+          "lead": "Scoring spelled out,",
+          "text": "plus optional crust-softening steps after the bake."
+        }
+      ],
+      "why": "The last two loaves had a very hard crust. Less time uncovered at a lower heat means a thinner, softer crust. The cold proof fits the bake into the next morning. The dough and starter feed are exactly as in v1.2.",
+      "result": "Best loaf yet. Oval loaf, the score opened fully, good oven spring, even golden top, pale sides. The warm rise only reached about 15% before the fridge. Wanted a bit more spring.",
+      "photos": [
+        {
+          "src": "/images/gf/v1-3-top.jpg",
+          "alt": "v1.3 loaf from above: oblong, golden top, single lengthwise score opened fully",
+          "caption": "Top: the score opened along its whole length; even golden colour.",
+          "width": 639,
+          "height": 1136
+        },
+        {
+          "src": "/images/gf/v1-3-side.jpg",
+          "alt": "v1.3 loaf from the side on a cooling rack, golden top and paler sides",
+          "caption": "Side: good height, sides paler than the top.",
+          "width": 639,
+          "height": 1136
+        }
+      ],
+      "starter": {
+        "title": "Starter build",
+        "rows": [
+          {
+            "item": "Starter (from the jar)",
+            "grams": "50",
+            "percent": "42%"
+          },
+          {
+            "group": "Fresh flour · 120 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "20",
+            "percent": "17%"
+          },
+          {
+            "note": "Flour mix · 100 g, equal thirds:"
+          },
+          {
+            "item": "Light buckwheat flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Sorghum flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "group": "Water"
+          },
+          {
+            "item": "Water",
+            "grams": "120",
+            "percent": "100%"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Mix the flour.",
+            "text": "Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest. Weigh the 20 g KA GF flour separately."
+          },
+          {
+            "title": "Feed.",
+            "text": "Stir 50 g starter, 20 g KA GF flour, 100 g flour mix and 120 g water together until smooth. Mark the level on the jar."
+          },
+          {
+            "title": "Wait for peak.",
+            "text": "Leave it covered at room temperature until it's bubbly, domed and well risen. Use it at or just before peak."
+          }
+        ],
+        "foot": "This makes about 290 g. The dough uses 80 g, so about 210 g is left to keep and feed next time."
+      },
+      "ingredients": {
+        "rows": [
+          {
+            "group": "Flour blend · 360 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "198",
+            "percent": "55%"
+          },
+          {
+            "item": "Tapioca starch",
+            "grams": "90",
+            "percent": "25%"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "72",
+            "percent": "20%"
+          },
+          {
+            "group": "Everything else"
+          },
+          {
+            "item": "Active GF starter, at peak (see Starter build)",
+            "grams": "80",
+            "percent": "22%"
+          },
+          {
+            "item": "Psyllium husk powder",
+            "grams": "15",
+            "percent": "4.2%"
+          },
+          {
+            "item": "Egg whites, 2 large",
+            "grams": "~60",
+            "percent": "17%"
+          },
+          {
+            "item": "Water, plus more only if stiff",
+            "grams": "260",
+            "percent": "72%"
+          },
+          {
+            "item": "Salt",
+            "grams": "7",
+            "percent": "1.9%"
+          }
+        ],
+        "foot": "Baker's % is against the 360 g flour blend. Hydration of ~88% counts the water, the starter's water (100% starter, so 40 g water in 80 g) and the egg whites' water."
+      },
+      "method": [
+        {
+          "title": "Gel the psyllium.",
+          "text": "Whisk the psyllium into the 260 g water right away so it doesn't clump, then let it sit 10 minutes."
+        },
+        {
+          "title": "Wet mix.",
+          "text": "Whisk in the egg whites and starter."
+        },
+        {
+          "title": "Add dry.",
+          "text": "Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don't add water yet."
+        },
+        {
+          "title": "Rest.",
+          "text": "Cover and leave 30 minutes so the flours and psyllium hydrate. If the dough now feels stiff or cracks when pressed, work in water a tablespoon at a time."
+        },
+        {
+          "title": "Shape.",
+          "text": "With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula."
+        },
+        {
+          "title": "Warm rise.",
+          "text": "Cover and set it in the oven with only the light on (about 75–80°F). Let it rise about 25%: a gentle dome forms, and a fingertip dent springs back slowly. Don't take it further, because it keeps rising in the fridge.",
+          "tag": "Changed"
+        },
+        {
+          "title": "Cold proof overnight.",
+          "text": "Move it, still covered, to the fridge at 38–40°F overnight.",
+          "tag": "New"
+        },
+        {
+          "title": "Preheat.",
+          "text": "In the morning, take the dough out of the fridge first, then heat the oven to 450°F (230°C) with the Dutch oven inside for 45–60 minutes. If the dough still looks flat once the oven is hot, leave it on the counter another 1–2 hours before baking.",
+          "tag": "Changed"
+        },
+        {
+          "title": "Score.",
+          "text": "Just before baking, dust the top with rice flour and make one confident slash about 1 cm deep, holding the blade at a shallow angle.",
+          "tag": "New"
+        },
+        {
+          "title": "Bake covered.",
+          "text": "Lower the loaf into the Dutch oven on its parchment, put the lid on, and bake 30 minutes at 450°F."
+        },
+        {
+          "title": "Bake uncovered, cooler.",
+          "text": "Take the lid off and drop the oven to 425°F (220°C). Bake 10–15 minutes more, just until the inside reads 205–210°F (96–99°C), then pull it right away.",
+          "tag": "Changed",
+          "note": "Was 20–25 minutes uncovered at 450°F."
+        },
+        {
+          "title": "Soften the crust (optional).",
+          "text": "While it's hot, brush the crust with a little oil or melted butter, then cool it under a clean towel. Once it's fully cool, keep it in a bag.",
+          "tag": "New"
+        },
+        {
+          "title": "Cool.",
+          "text": "Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy."
+        }
+      ]
+    },
+    {
+      "slug": "v1-2",
+      "version": "v1.2",
+      "date": "2026-11-21",
+      "dateLabel": "21 Nov 2026",
+      "status": "past",
+      "resultTag": "Crust too hard",
+      "tone": "problem",
+      "summary": "Starter feed gets 20 g KA GF flour and drops to 100% hydration.",
+      "meta": [
+        {
+          "label": "Yield",
+          "value": "1 loaf"
+        },
+        {
+          "label": "Hands-on",
+          "value": "~30 min"
+        },
+        {
+          "label": "Proof",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Bake",
+          "value": "45–55 min"
+        },
+        {
+          "label": "Hydration",
+          "value": "~88%"
+        }
+      ],
+      "changes": [
+        {
+          "lead": "Starter feed now includes 20 g King Arthur GF flour.",
+          "text": "The feed is 50 g starter + 20 g KA GF + 100 g flour mix (light buckwheat, sorghum and brown rice in equal thirds), so the starter gets 120 g fresh flour."
+        },
+        {
+          "lead": "Starter hydration 110% → 100%.",
+          "text": "Water now equals the fresh flour: 120 g (was 110 g). The feed makes about 290 g."
+        },
+        {
+          "lead": "Dough hydration ~89% → ~88%.",
+          "text": "80 g of a 100% starter carries 40 g water instead of about 42 g. The dough recipe itself is unchanged."
+        }
+      ],
+      "why": "An updated starter routine. Everything else is exactly v1.1.",
+      "result": "Crust very hard. Both loaves baked from this recipe came out this way, which led to the softer bake in v1.3.",
+      "photos": [],
+      "photoNote": "No photos from this bake.",
+      "starter": {
+        "title": "Starter build",
+        "rows": [
+          {
+            "item": "Starter (from the jar)",
+            "grams": "50",
+            "percent": "42%"
+          },
+          {
+            "group": "Fresh flour · 120 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "20",
+            "percent": "17%",
+            "tag": "New"
+          },
+          {
+            "note": "Flour mix · 100 g, equal thirds:"
+          },
+          {
+            "item": "Light buckwheat flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Sorghum flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "group": "Water"
+          },
+          {
+            "item": "Water",
+            "grams": "120",
+            "percent": "100%",
+            "tag": "Changed",
+            "was": "was 110 g (110%)"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Mix the flour.",
+            "text": "Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest. Weigh the 20 g KA GF flour separately."
+          },
+          {
+            "title": "Feed.",
+            "text": "Stir 50 g starter, 20 g KA GF flour, 100 g flour mix and 120 g water together until smooth. Mark the level on the jar."
+          },
+          {
+            "title": "Wait for peak.",
+            "text": "Leave it covered at room temperature until it's bubbly, domed and well risen. Use it at or just before peak."
+          }
+        ],
+        "foot": "This makes about 290 g. The dough uses 80 g, so about 210 g is left to keep and feed next time."
+      },
+      "ingredients": {
+        "rows": [
+          {
+            "group": "Flour blend · 360 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "198",
+            "percent": "55%"
+          },
+          {
+            "item": "Tapioca starch",
+            "grams": "90",
+            "percent": "25%"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "72",
+            "percent": "20%"
+          },
+          {
+            "group": "Everything else"
+          },
+          {
+            "item": "Active GF starter, at peak (see Starter build)",
+            "grams": "80",
+            "percent": "22%"
+          },
+          {
+            "item": "Psyllium husk powder",
+            "grams": "15",
+            "percent": "4.2%"
+          },
+          {
+            "item": "Egg whites, 2 large",
+            "grams": "~60",
+            "percent": "17%"
+          },
+          {
+            "item": "Water, plus more only if stiff",
+            "grams": "260",
+            "percent": "72%"
+          },
+          {
+            "item": "Salt",
+            "grams": "7",
+            "percent": "1.9%"
+          }
+        ],
+        "foot": "Baker's % is against the 360 g flour blend. Hydration of ~88% counts the water, the starter's water (100% starter, so 40 g water in 80 g) and the egg whites' water."
+      },
+      "method": [
+        {
+          "title": "Gel the psyllium.",
+          "text": "Whisk the psyllium into the 260 g water right away so it doesn't clump, then let it sit 10 minutes."
+        },
+        {
+          "title": "Wet mix.",
+          "text": "Whisk in the egg whites and starter."
+        },
+        {
+          "title": "Add dry.",
+          "text": "Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don't add water yet."
+        },
+        {
+          "title": "Rest.",
+          "text": "Cover and leave 30 minutes so the flours and psyllium hydrate. If the dough now feels stiff or cracks when pressed, work in water a tablespoon at a time."
+        },
+        {
+          "title": "Shape.",
+          "text": "With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula."
+        },
+        {
+          "title": "Proof.",
+          "text": "Cover and leave at room temperature until it has risen about 50%, usually 2–4 hours depending on the starter and kitchen. Don't over-proof, because GF dough collapses."
+        },
+        {
+          "title": "Preheat.",
+          "text": "Heat the oven to 450°F (230°C) with a Dutch oven inside, if using one. For a loaf pan, use 425°F (220°C)."
+        },
+        {
+          "title": "Score and bake.",
+          "text": "Score the top. In a Dutch oven, bake covered 30 minutes, then uncovered 20–25 minutes. In a loaf pan, bake 45–55 minutes, tenting with foil if it browns too fast."
+        },
+        {
+          "title": "Check doneness.",
+          "text": "The internal temperature should be 205–210°F (96–99°C)."
+        },
+        {
+          "title": "Cool.",
+          "text": "Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy."
+        }
+      ]
+    },
+    {
+      "slug": "v1",
+      "version": "v1",
+      "date": "2026-11-20",
+      "dateLabel": "20 Nov 2026",
+      "status": "past",
+      "resultTag": "Not baked",
+      "tone": "pending",
+      "summary": "Psyllium husk replaces ground flax, and the water drops to 260 g.",
+      "meta": [
+        {
+          "label": "Yield",
+          "value": "1 loaf"
+        },
+        {
+          "label": "Hands-on",
+          "value": "~30 min"
+        },
+        {
+          "label": "Proof",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Bake",
+          "value": "45–55 min"
+        },
+        {
+          "label": "Hydration",
+          "value": "~88%"
+        }
+      ],
+      "changes": [
+        {
+          "lead": "Ground flax 18 g → psyllium husk powder 15 g.",
+          "text": "Gel it in the water for 10 minutes, the same way as the flax. Psyllium gives GF dough a stretchy, shapeable body, so it should hold gas and keep its rise."
+        },
+        {
+          "lead": "Water 290 g → 260 g to start.",
+          "text": "Psyllium firms up as it sits, so add water back only if the dough is stiff after the 30-minute rest."
+        }
+      ],
+      "why": "v0 didn't rise enough and was too sticky to shape. Both point to too little structure. Everything else is unchanged, to see what these two changes do.",
+      "includes": {
+        "label": "v1.1 · 21 Nov 2026",
+        "text": "The starter feed was added to the card: 50 g starter + 100 g flour mix + 110 g water (110% hydration), with the flour mix in equal thirds of light buckwheat, sorghum and brown rice flour. With a 110% starter, overall hydration is ~89% instead of ~88%. The dough itself didn't change."
+      },
+      "result": "Not baked. The next loaves were made from v1.2.",
+      "photos": [],
+      "photoNote": "This recipe wasn't baked, so there are no photos.",
+      "starter": {
+        "title": "Starter build (added in v1.1)",
+        "rows": [
+          {
+            "item": "Starter (from the jar)",
+            "grams": "50",
+            "percent": "50%"
+          },
+          {
+            "group": "Flour mix · 100 g"
+          },
+          {
+            "item": "Light buckwheat flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Sorghum flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "~33",
+            "percent": "⅓"
+          },
+          {
+            "group": "Water"
+          },
+          {
+            "item": "Water",
+            "grams": "110",
+            "percent": "110%"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Mix the flour.",
+            "text": "Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest."
+          },
+          {
+            "title": "Feed.",
+            "text": "Stir 50 g starter, 100 g flour mix and 110 g water together until smooth. Mark the level on the jar."
+          },
+          {
+            "title": "Wait for peak.",
+            "text": "Leave it covered at room temperature until it's bubbly, domed and well risen. Use it at or just before peak."
+          }
+        ],
+        "foot": "This makes about 260 g. The dough uses 80 g, so about 180 g is left to keep and feed next time."
+      },
+      "ingredients": {
+        "rows": [
+          {
+            "group": "Flour blend · 360 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "198",
+            "percent": "55%"
+          },
+          {
+            "item": "Tapioca starch",
+            "grams": "90",
+            "percent": "25%"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "72",
+            "percent": "20%"
+          },
+          {
+            "group": "Everything else"
+          },
+          {
+            "item": "Active GF starter",
+            "grams": "80",
+            "percent": "22%"
+          },
+          {
+            "item": "Psyllium husk powder",
+            "grams": "15",
+            "percent": "4.2%",
+            "tag": "New",
+            "was": "was ground flax, 18 g"
+          },
+          {
+            "item": "Egg whites, 2 large",
+            "grams": "~60",
+            "percent": "17%"
+          },
+          {
+            "item": "Water, plus more only if stiff",
+            "grams": "260",
+            "percent": "72%",
+            "tag": "Changed",
+            "was": "was 290 g"
+          },
+          {
+            "item": "Salt",
+            "grams": "7",
+            "percent": "1.9%"
+          }
+        ],
+        "foot": "Baker's % is against the 360 g flour blend. Hydration of ~88% counts the water, the starter's water (assuming a 100% starter) and the egg whites' water."
+      },
+      "method": [
+        {
+          "title": "Gel the psyllium.",
+          "text": "Whisk the psyllium into the 260 g water right away so it doesn't clump, then let it sit 10 minutes."
+        },
+        {
+          "title": "Wet mix.",
+          "text": "Whisk in the egg whites and starter."
+        },
+        {
+          "title": "Add dry.",
+          "text": "Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don't add water yet."
+        },
+        {
+          "title": "Rest.",
+          "text": "Cover and leave 30 minutes so the flours and psyllium hydrate. If the dough now feels stiff or cracks when pressed, work in water a tablespoon at a time."
+        },
+        {
+          "title": "Shape.",
+          "text": "With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula."
+        },
+        {
+          "title": "Proof.",
+          "text": "Cover and leave at room temperature until it has risen about 50%, usually 2–4 hours depending on the starter and kitchen. Don't over-proof, because GF dough collapses."
+        },
+        {
+          "title": "Preheat.",
+          "text": "Heat the oven to 450°F (230°C) with a Dutch oven inside, if using one. For a loaf pan, use 425°F (220°C)."
+        },
+        {
+          "title": "Score and bake.",
+          "text": "Score the top. In a Dutch oven, bake covered 30 minutes, then uncovered 20–25 minutes. In a loaf pan, bake 45–55 minutes, tenting with foil if it browns too fast."
+        },
+        {
+          "title": "Check doneness.",
+          "text": "The internal temperature should be 205–210°F (96–99°C)."
+        },
+        {
+          "title": "Cool.",
+          "text": "Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy."
+        }
+      ]
+    },
+    {
+      "slug": "v0",
+      "version": "v0",
+      "date": "2026-11-20",
+      "dateLabel": "20 Nov 2026",
+      "status": "baseline",
+      "resultTag": "Not enough rise",
+      "tone": "problem",
+      "summary": "The starting recipe, with ground flax and 290 g water.",
+      "meta": [
+        {
+          "label": "Yield",
+          "value": "1 loaf"
+        },
+        {
+          "label": "Proof",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Bake",
+          "value": "50–55 min"
+        },
+        {
+          "label": "Hydration",
+          "value": "~95%"
+        }
+      ],
+      "intro": "The recipe the trials started from, summarised from the original notes.",
+      "result": "Not enough rise. Dough too sticky to shape. This led to the psyllium swap and less water in v1.",
+      "photos": [],
+      "photoNote": "No photos from this bake.",
+      "ingredients": {
+        "rows": [
+          {
+            "group": "Flour blend · 360 g"
+          },
+          {
+            "item": "King Arthur Gluten-Free flour",
+            "grams": "198",
+            "percent": "55%"
+          },
+          {
+            "item": "Tapioca starch",
+            "grams": "90",
+            "percent": "25%"
+          },
+          {
+            "item": "Brown rice flour",
+            "grams": "72",
+            "percent": "20%"
+          },
+          {
+            "group": "Everything else"
+          },
+          {
+            "item": "Active GF starter",
+            "grams": "80",
+            "percent": "22%"
+          },
+          {
+            "item": "Ground flax",
+            "grams": "18",
+            "percent": "5%"
+          },
+          {
+            "item": "Egg whites, 2 large",
+            "grams": "~60",
+            "percent": "17%"
+          },
+          {
+            "item": "Water, plus more as needed",
+            "grams": "290",
+            "percent": "81%"
+          },
+          {
+            "item": "Salt",
+            "grams": "7",
+            "percent": "1.9%"
+          }
+        ],
+        "foot": "Hydration of roughly 95% counts the water, the starter's water and the egg whites' water."
+      },
+      "method": [
+        {
+          "title": "Flax gel.",
+          "text": "Stir the ground flax into the water and leave 10 minutes."
+        },
+        {
+          "title": "Wet mix.",
+          "text": "Whisk in the egg whites and starter."
+        },
+        {
+          "title": "Add dry.",
+          "text": "Mix in the three flours and the salt."
+        },
+        {
+          "title": "Rest.",
+          "text": "Cover and leave 30 minutes."
+        },
+        {
+          "title": "Shape.",
+          "text": "With wet hands, shape into a banneton or loaf pan."
+        },
+        {
+          "title": "Proof.",
+          "text": "Leave until it has risen about 50%, usually 2–4 hours."
+        },
+        {
+          "title": "Bake.",
+          "text": "Dutch oven at 450°F (230°C): 30 minutes covered, then 20–25 minutes uncovered. Or a loaf pan at 425°F (220°C) for 45–55 minutes."
+        },
+        {
+          "title": "Check doneness.",
+          "text": "The internal temperature should be 205–210°F (96–99°C)."
+        },
+        {
+          "title": "Cool.",
+          "text": "Cool at least 2 hours before cutting."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+<!-- Reference only: structure and IA of the approved claude.ai draft. Its fonts and colours are NOT the site's; follow BRIEF.md for styling. -->
+<title>GF Sourdough Trials</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column like a baker's notebook. Home = pinned current best + vertical timeline of trial cards; each trial is its own hash view with photos, this trial's change, result, folded recipe, newer/older pager. */
+:root {
+  --bg: #f5f1ea;
+  --surface: #fffdf9;
+  --fg: #2a241e;
+  --muted: #6f665b;
+  --line: #e3dbcf;
+  --crust: #8a5a2b;
+  --crust-soft: #f0e3d2;
+  --good: #2f6b4f;
+  --good-soft: #e2efe6;
+  --warn: #9a4a22;
+  --warn-soft: #f6e2d6;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1916; --surface: #24211d; --fg: #ede7de; --muted: #a89e91; --line: #3a352f;
+    --crust: #dba872; --crust-soft: #382a1d; --good: #86c9a6; --good-soft: #1e3228; --warn: #e79c76; --warn-soft: #3a241a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b1916; --surface: #24211d; --fg: #ede7de; --muted: #a89e91; --line: #3a352f;
+  --crust: #dba872; --crust-soft: #382a1d; --good: #86c9a6; --good-soft: #1e3228; --warn: #e79c76; --warn-soft: #3a241a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 56px;
+}
+.page { max-width: 680px; margin: 0 auto; }
+a { color: var(--crust); }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--crust); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 650; line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+
+/* labels in the site's "· 01 · label ·" style */
+.kicker, .label {
+  font-family: var(--font-mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--crust);
+}
+.label { margin-bottom: 12px; }
+
+.back {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+  font-family: var(--font-mono); font-size: .84rem; color: var(--muted);
+  padding: 6px 0;
+}
+.back:hover { color: var(--crust); }
+
+/* ---------- home ---------- */
+.home { display: grid; gap: 36px; }
+.intro { display: grid; gap: 12px; padding-top: 8px; }
+.intro h1 { font-size: clamp(2.3rem, 9vw, 3.4rem); font-weight: 500; font-style: italic; letter-spacing: -.01em; }
+.lede { color: var(--muted); max-width: 52ch; font-size: 1.05rem; }
+.starter-note {
+  font-size: .93rem; padding: 12px 14px; border-radius: 10px;
+  background: var(--crust-soft); color: var(--fg); max-width: 60ch;
+}
+.starter-note span { color: var(--crust); margin-right: 4px; }
+
+/* cards */
+.card {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: start;
+  padding: 12px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line);
+  text-decoration: none; color: inherit;
+  transition: border-color .15s, transform .15s;
+}
+.card:hover { border-color: var(--crust); }
+@media (prefers-reduced-motion: no-preference) { .card:hover { transform: translateY(-1px); } }
+.ph { width: 100%; max-width: 100%; aspect-ratio: 1; border-radius: 10px; object-fit: cover; display: block; }
+.ph-empty {
+  display: grid; place-content: center; text-align: center; gap: 2px;
+  background: var(--crust-soft); color: var(--crust);
+}
+.ph-dash { background: transparent; border: 1.5px dashed var(--line); color: var(--muted); }
+.ph-v { font-family: var(--font-display); font-size: 1.25rem; font-weight: 650; line-height: 1; }
+.ph-l { font-family: var(--font-mono); font-size: .58rem; letter-spacing: .06em; text-transform: uppercase; }
+.c-body { display: grid; gap: 6px; min-width: 0; }
+.c-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.c-ver { font-family: var(--font-display); font-size: 1.3rem; font-weight: 650; line-height: 1.1; }
+.c-date { font-family: var(--font-mono); font-size: .76rem; color: var(--muted); }
+.flag {
+  font-family: var(--font-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px;
+}
+.flag-best { color: var(--good); border-color: currentColor; }
+.c-line { font-size: .95rem; }
+.c-fold { font-size: .82rem; color: var(--muted); }
+.c-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.c-go { color: var(--crust); font-size: 1.1rem; }
+
+.pill {
+  display: inline-block; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+  border-radius: 999px; padding: 3px 10px; white-space: nowrap;
+}
+.pill-good { background: var(--good-soft); color: var(--good); }
+.pill-warn { background: var(--warn-soft); color: var(--warn); }
+.pill-pending { border: 1.5px dashed var(--line); color: var(--muted); padding: 2px 9px; }
+
+/* featured card */
+.card-feature { padding: 18px; border-color: var(--crust); }
+.card-feature .ph { aspect-ratio: 4 / 5; }
+.card-feature .c-ver { font-size: 1.9rem; }
+.card-feature .c-line { font-size: 1.02rem; }
+@media (min-width: 560px) {
+  .card-feature { padding: 22px; }
+  .card-feature .c-body { gap: 10px; }
+}
+
+/* timeline */
+.tl { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; position: relative; }
+.tl::before {
+  content: ""; position: absolute; left: 7px; top: 18px; bottom: 18px; width: 2px; background: var(--line);
+}
+.tl-i { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 12px; align-items: center; position: relative; }
+.tl-i::before {
+  content: ""; width: 12px; height: 12px; margin-left: 2px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--crust); position: relative; z-index: 1;
+}
+.tl-good::before { background: var(--good); border-color: var(--good); }
+.tl-pending::before { border-style: dashed; border-color: var(--muted); }
+
+.foot-site {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
+  border-top: 1px solid var(--line); padding-top: 16px;
+  font-family: var(--font-mono); font-size: .8rem; color: var(--muted);
+}
+.foot-site a { text-decoration: none; }
+
+/* ---------- trial detail ---------- */
+.trial { display: grid; gap: 26px; }
+.js .trial { padding-top: 4px; }
+html:not(.js) .trial { border-top: 2px dashed var(--line); margin-top: 48px; padding-top: 32px; }
+.t-head { display: grid; gap: 10px; }
+.t-title { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.t-title h2 { font-size: clamp(2.4rem, 10vw, 3.2rem); font-weight: 650; }
+.t-lede { font-size: 1.1rem; max-width: 52ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 4px 0 0; }
+.meta div { display: grid; gap: 0; }
+.meta dt { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.meta dd { margin: 0; font-weight: 500; font-size: .95rem; }
+
+.photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.photos figure { margin: 0; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.photos img { width: 100%; max-width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; display: block; }
+.photos figcaption { font-size: .84rem; color: var(--muted); }
+.nophoto {
+  border: 1.5px dashed var(--line); border-radius: 12px; padding: 22px 16px; text-align: center;
+  color: var(--muted); font-size: .92rem;
+}
+.nophoto span { color: var(--crust); }
+
+.blk { display: grid; gap: 10px; }
+.blk h3 { font-size: 1.25rem; }
+.changed { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.changed ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+.changed li::marker { color: var(--crust); }
+.why { color: var(--muted); font-size: .95rem; }
+.why b { color: var(--fg); font-weight: 600; }
+.builds { font-size: .9rem; color: var(--muted); }
+.fold { border-left: 3px solid var(--crust-soft); padding-left: 14px; }
+.fold h3 { font-family: var(--font-mono); font-size: .78rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--crust); }
+.fold p { font-size: .95rem; }
+.result p { max-width: 60ch; }
+
+/* folded recipe */
+.recipe { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.recipe summary {
+  list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
+  padding: 16px 0; font-family: var(--font-display); font-size: 1.2rem; font-weight: 650;
+}
+.recipe summary::-webkit-details-marker { display: none; }
+.recipe summary::before { content: "+"; font-family: var(--font-mono); color: var(--crust); width: 1ch; }
+.recipe[open] summary::before { content: "−"; }
+.sum-hint { font-family: var(--font-mono); font-size: .74rem; font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.recipe-in { display: grid; gap: 28px; padding: 4px 0 24px; }
+.recipe-in section { display: grid; gap: 12px; }
+.recipe-in h4 { font-size: 1.1rem; }
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: .94rem; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-family: var(--font-mono); font-weight: 500; font-size: .7rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.grp td { background: var(--crust-soft); color: var(--crust); font-weight: 600; font-size: .82rem; padding-block: 5px; }
+tr.sub td { color: var(--muted); font-size: .86rem; }
+.chg {
+  display: inline-block; margin-left: 6px; font-family: var(--font-mono); font-size: .64rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--good); background: var(--good-soft);
+  border-radius: 4px; padding: 1px 6px; vertical-align: 2px;
+}
+.was { display: block; color: var(--muted); font-size: .8rem; }
+.foot { color: var(--muted); font-size: .86rem; }
+ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+ol.steps li:last-child { border-bottom: 0; }
+ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: .82rem; color: var(--crust); padding-top: 3px; }
+ol.steps strong { display: block; font-weight: 600; }
+ol.steps p { margin-top: 2px; }
+.aside { color: var(--muted); font-size: .88rem; }
+
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pg {
+  display: grid; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); text-decoration: none; color: var(--fg); min-width: 0;
+}
+.pg:hover { border-color: var(--crust); }
+.pg span { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.pg b { font-family: var(--font-display); font-size: 1.3rem; font-weight: 650; }
+.pg-old { text-align: right; }
+.pg-none { border: 0; background: none; }
+
+</style>
+<div class="page">
+  <section class="home" id="trials" aria-labelledby="pg-title">
+    <a class="back home-back" href="https://crispycrustboule.com/">← Back to CrispyCrustBoule</a>
+    <header class="intro">
+      <p class="kicker">· gluten-free field notes ·</p>
+      <h1 id="pg-title">Gluten-free, slowly.</h1>
+      <p class="lede">Every trial at a gluten-free sourdough loaf, newest first. Tap one to see what changed, how it baked, and the full recipe.</p>
+      <p class="starter-note"><span aria-hidden="true">✦</span> These loaves use their own gluten-free starter of light buckwheat, sorghum and brown rice flour. They don't use Oho, the site's rye and all-purpose starter.</p>
+    </header>
+    <section class="pinned" aria-labelledby="best-h">
+      <p class="label" id="best-h">· current best ·</p>
+      <a class="card card-feature" href="#v1-3"><span class="c-body"><span class="c-top"><span class="c-ver">v1.3</span><span class="c-date">22 Nov 2026</span></span><span class="c-line">Shorter, cooler lid-off bake and an overnight cold proof.</span><span class="c-foot"><span class="pill pill-good">Best yet</span><span class="c-go" aria-hidden="true">→</span></span></span></a>
+    </section>
+    <section aria-labelledby="tl-h">
+      <p class="label" id="tl-h">· all trials · newest first ·</p>
+      <ol class="tl"><li class="tl-i tl-pending"><a class="card" href="#v1-4"><span class="c-body"><span class="c-top"><span class="c-ver">v1.4</span><span class="c-date">22 Nov 2026</span><span class="flag">Up next</span></span><span class="c-line">275 g water and a full 25–30% warm rise before the fridge.</span><span class="c-foot"><span class="pill pill-pending">Not baked yet</span><span class="c-go" aria-hidden="true">→</span></span></span></a></li><li class="tl-i tl-good tl-best"><a class="card" href="#v1-3"><span class="c-body"><span class="c-top"><span class="c-ver">v1.3</span><span class="c-date">22 Nov 2026</span><span class="flag flag-best">Current best</span></span><span class="c-line">Shorter, cooler lid-off bake and an overnight cold proof.</span><span class="c-foot"><span class="pill pill-good">Best yet</span><span class="c-go" aria-hidden="true">→</span></span></span></a></li><li class="tl-i tl-warn"><a class="card" href="#v1-2"><span class="c-body"><span class="c-top"><span class="c-ver">v1.2</span><span class="c-date">21 Nov 2026</span></span><span class="c-line">Starter feed gets 20 g KA GF flour and drops to 100% hydration.</span><span class="c-foot"><span class="pill pill-warn">Crust too hard</span><span class="c-go" aria-hidden="true">→</span></span></span></a></li><li class="tl-i tl-pending"><a class="card" href="#v1"><span class="c-body"><span class="c-top"><span class="c-ver">v1</span><span class="c-date">20 Nov 2026</span></span><span class="c-line">Psyllium husk replaces ground flax, and the water drops to 260 g.</span><span class="c-fold">Includes v1.1, which only added the starter feed.</span><span class="c-foot"><span class="pill pill-pending">Not baked</span><span class="c-go" aria-hidden="true">→</span></span></span></a></li><li class="tl-i tl-warn"><a class="card" href="#v0"><span class="c-body"><span class="c-top"><span class="c-ver">v0</span><span class="c-date">20 Nov 2026</span><span class="flag">Baseline</span></span><span class="c-line">The starting recipe, with ground flax and 290 g water.</span><span class="c-foot"><span class="pill pill-warn">Not enough rise</span><span class="c-go" aria-hidden="true">→</span></span></span></a></li></ol>
+    </section>
+    <footer class="foot-site"><span>CrispyCrustBoule ✦ gluten-free trials</span><a href="https://crispycrustboule.com/">crispycrustboule.com ↗</a></footer>
+  </section>
+  <article class="trial" id="v1-4" aria-labelledby="v1-4-h"><a class="back" href="#trials">← All trials</a><header class="t-head"><p class="kicker">· next trial · 22 Nov 2026 ·</p><div class="t-title"><h2 id="v1-4-h">v1.4</h2><span class="pill pill-pending">Not baked yet</span></div><p class="t-lede">275 g water and a full 25–30% warm rise before the fridge.</p><dl class="meta"><div><dt>Yield</dt><dd>1 loaf</dd></div><div><dt>Hands-on</dt><dd>~30 min</dd></div><div><dt>Proof</dt><dd>25–30% warm + overnight cold</dd></div><div><dt>Bake</dt><dd>40–45 min</dd></div><div><dt>Hydration</dt><dd>~92%</dd></div></dl></header><div class="nophoto"><span aria-hidden="true">✦</span> Not baked yet. Photos go here after the bake.</div><section class="blk changed"><h3>What changed in v1.4</h3><ul><li><b>Water 260 g → 275 g.</b> That takes hydration from about 88% to about 92%. A slightly looser dough expands more in the oven. The psyllium still gels for 10 minutes.</li><li><b>Warm rise must reach 25–30% before the fridge.</b> A strip of tape on the pan or banneton at the dough's starting level shows the rise. It gets as long as it needs.</li><li><b>Optional: 5 more minutes uncovered at 425°F</b> if the sides still look pale once the inside is at temperature.</li></ul><p class="why"><b>Why:</b> v1.3 was the best loaf yet, but I&#x27;d like a little more oven spring. Two things limit spring here: a fairly stiff dough, and the warm rise stopping at about 15% instead of 25%. The extra water is the one real recipe change. The proof target was already in v1.3 and is now spelled out so it actually gets hit. Everything else is exactly as v1.3.</p><p class="builds">Everything else carries over from <a href="#v1-3">v1.3</a>.</p></section><section class="blk result"><h3>How it baked</h3><p>Not baked yet. Things to watch: how the dough handles at 275 g water, how long the warm rise takes to reach 25–30%, the oven spring compared with v1.3, the crumb, and the side colour.</p></section><details class="recipe"><summary><span>Full recipe for v1.4</span><span class="sum-hint">starter, ingredients, method</span></summary><div class="recipe-in"><section><h4>Starter build</h4><div class="tbl"><table><thead><tr><th>Starter feed</th><th class="num">Grams</th><th class="num">% of flour</th></tr></thead><tbody><tr><td>Starter (from the jar)</td><td class="num">50</td><td class="num">42%</td></tr><tr class="grp"><td colspan="3">Fresh flour · 120 g</td></tr><tr><td>King Arthur Gluten-Free flour</td><td class="num">20</td><td class="num">17%</td></tr><tr class="sub"><td colspan="3">Flour mix · 100 g, equal thirds:</td></tr><tr><td>Light buckwheat flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Sorghum flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Brown rice flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr class="grp"><td colspan="3">Water</td></tr><tr><td>Water</td><td class="num">120</td><td class="num">100%</td></tr></tbody></table></div><ol class="steps"><li><div><strong>Mix the flour.</strong><p>Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest. Weigh the 20 g KA GF flour separately.</p></div></li><li><div><strong>Feed.</strong><p>Stir 50 g starter, 20 g KA GF flour, 100 g flour mix and 120 g water together until smooth. Mark the level on the jar.</p></div></li><li><div><strong>Wait for peak.</strong><p>Leave it covered at room temperature until it&#x27;s bubbly, domed and well risen. Use it at or just before peak.</p></div></li></ol><p class="foot">This makes about 290 g. The dough uses 80 g, so about 210 g is left to keep and feed next time.</p></section><section><h4>Ingredients</h4><div class="tbl"><table><thead><tr><th>Ingredient</th><th class="num">Grams</th><th class="num">Baker’s %</th></tr></thead><tbody><tr class="grp"><td colspan="3">Flour blend · 360 g</td></tr><tr><td>King Arthur Gluten-Free flour</td><td class="num">198</td><td class="num">55%</td></tr><tr><td>Tapioca starch</td><td class="num">90</td><td class="num">25%</td></tr><tr><td>Brown rice flour</td><td class="num">72</td><td class="num">20%</td></tr><tr class="grp"><td colspan="3">Everything else</td></tr><tr><td>Active GF starter, at peak (see Starter build)</td><td class="num">80</td><td class="num">22%</td></tr><tr><td>Psyllium husk powder</td><td class="num">15</td><td class="num">4.2%</td></tr><tr><td>Egg whites, 2 large</td><td class="num">~60</td><td class="num">17%</td></tr><tr><td>Water, plus more only if stiff<span class="chg">Changed</span><span class="was">was 260 g in v1–v1.3, 290 g in v0</span></td><td class="num">275</td><td class="num">76%</td></tr><tr><td>Salt</td><td class="num">7</td><td class="num">1.9%</td></tr></tbody></table></div><p class="foot">Baker&#x27;s % is against the 360 g flour blend. Hydration of ~92% (was ~88%) counts the water, the starter&#x27;s water (100% starter, so 40 g water in 80 g) and the egg whites&#x27; water.</p></section><section><h4>Method</h4><ol class="steps"><li><div><strong>Gel the psyllium.</strong><p>Whisk the psyllium into the 275 g water right away so it doesn&#x27;t clump, then let it sit 10 minutes.</p></div></li><li><div><strong>Wet mix.</strong><p>Whisk in the egg whites and starter.</p></div></li><li><div><strong>Add dry.</strong><p>Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don&#x27;t add water yet.</p></div></li><li><div><strong>Rest.</strong><p>Cover and leave 30 minutes so the flours and psyllium hydrate. It will be a little softer and stickier than v1.3, which is expected. Only if it still feels stiff or cracks when pressed, work in water a tablespoon at a time.</p></div></li><li><div><strong>Shape.</strong><p>With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula. Stick a strip of tape on the outside of the pan or banneton level with the top of the dough.</p></div></li><li><div><strong>Warm rise to 25–30%.<span class="chg">Changed</span></strong><p>Cover and set it in the oven with only the light on (about 75–80°F). Let it rise 25–30% above the tape: a gentle dome forms, and a fingertip dent springs back slowly. Go by the rise, not the clock. It may take noticeably longer than last time. Don&#x27;t take it past about 30%, because it keeps rising a little in the fridge.</p><p class="aside">Last time it went into the fridge at about 15%.</p></div></li><li><div><strong>Cold proof overnight.</strong><p>Move it, still covered, to the fridge at 38–40°F overnight.</p></div></li><li><div><strong>Preheat.</strong><p>In the morning, take the dough out of the fridge first, then heat the oven to 450°F (230°C) with the Dutch oven inside for 45–60 minutes. If the dough still looks flat once the oven is hot, leave it on the counter another 1–2 hours before baking.</p></div></li><li><div><strong>Score.</strong><p>Just before baking, dust the top with rice flour and make one confident slash about 1 cm deep, holding the blade at a shallow angle.</p></div></li><li><div><strong>Bake covered.</strong><p>Lower the loaf into the Dutch oven on its parchment, put the lid on, and bake 30 minutes at 450°F.</p></div></li><li><div><strong>Bake uncovered, cooler.<span class="chg">Changed</span></strong><p>Take the lid off and drop the oven to 425°F (220°C). Bake 10–15 minutes more, just until the inside reads 205–210°F (96–99°C), then pull it right away.</p><p class="aside">Optional (new in v1.4): if the sides still look pale once it&#x27;s at temperature, give it up to 5 minutes more.</p></div></li><li><div><strong>Soften the crust (optional).</strong><p>While it&#x27;s hot, brush the crust with a little oil or melted butter, then cool it under a clean towel. Once it&#x27;s fully cool, keep it in a bag.</p></div></li><li><div><strong>Cool.</strong><p>Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy.</p></div></li></ol></section></div></details><nav class="pager" aria-label="Step through trials"><span class="pg pg-none"></span><a class="pg pg-old" href="#v1-3"><span>Older trial →</span><b>v1.3</b></a></nav></article><article class="trial" id="v1-3" aria-labelledby="v1-3-h"><a class="back" href="#trials">← All trials</a><header class="t-head"><p class="kicker">· current best · 22 Nov 2026 ·</p><div class="t-title"><h2 id="v1-3-h">v1.3</h2><span class="pill pill-good">Best yet</span></div><p class="t-lede">Shorter, cooler lid-off bake and an overnight cold proof.</p><dl class="meta"><div><dt>Yield</dt><dd>1 loaf</dd></div><div><dt>Hands-on</dt><dd>~30 min</dd></div><div><dt>Proof</dt><dd>~25% warm + overnight cold</dd></div><div><dt>Bake</dt><dd>40–45 min</dd></div><div><dt>Hydration</dt><dd>~88%</dd></div></dl></header><div class="photos"><figure><img src="../../../public/images/gf/v1-3-top.jpg" alt="v1.3 loaf from above: oblong, golden top, single lengthwise score opened fully" width="639" height="1136" loading="lazy"><figcaption>Top: the score opened along its whole length; even golden colour.</figcaption></figure><figure><img src="../../../public/images/gf/v1-3-side.jpg" alt="v1.3 loaf from the side on a cooling rack, golden top and paler sides" width="639" height="1136" loading="lazy"><figcaption>Side: good height, sides paler than the top.</figcaption></figure></div><section class="blk changed"><h3>What changed in v1.3</h3><ul><li><b>Shorter uncovered bake: 20–25 min → 10–15 min.</b> Still 30 minutes with the lid on, then lid off only until the loaf reads 205–210°F inside.</li><li><b>Oven drops to 425°F when the lid comes off</b> (was 450°F the whole bake).</li><li><b>Overnight cold proof.</b> A warm rise to about 25% in the oven with only the light on (~75–80°F), then the fridge overnight at 38–40°F, baked straight from cold. This replaces the 2–4 h room-temperature proof to ~50%.</li><li><b>Scoring spelled out,</b> plus optional crust-softening steps after the bake.</li></ul><p class="why"><b>Why:</b> The last two loaves had a very hard crust. Less time uncovered at a lower heat means a thinner, softer crust. The cold proof fits the bake into the next morning. The dough and starter feed are exactly as in v1.2.</p><p class="builds">Everything else carries over from <a href="#v1-2">v1.2</a>.</p></section><section class="blk result"><h3>How it baked</h3><p>Best loaf yet. Oval loaf, the score opened fully, good oven spring, even golden top, pale sides. The warm rise only reached about 15% before the fridge. Wanted a bit more spring.</p></section><details class="recipe"><summary><span>Full recipe for v1.3</span><span class="sum-hint">starter, ingredients, method</span></summary><div class="recipe-in"><section><h4>Starter build</h4><div class="tbl"><table><thead><tr><th>Starter feed</th><th class="num">Grams</th><th class="num">% of flour</th></tr></thead><tbody><tr><td>Starter (from the jar)</td><td class="num">50</td><td class="num">42%</td></tr><tr class="grp"><td colspan="3">Fresh flour · 120 g</td></tr><tr><td>King Arthur Gluten-Free flour</td><td class="num">20</td><td class="num">17%</td></tr><tr class="sub"><td colspan="3">Flour mix · 100 g, equal thirds:</td></tr><tr><td>Light buckwheat flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Sorghum flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Brown rice flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr class="grp"><td colspan="3">Water</td></tr><tr><td>Water</td><td class="num">120</td><td class="num">100%</td></tr></tbody></table></div><ol class="steps"><li><div><strong>Mix the flour.</strong><p>Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest. Weigh the 20 g KA GF flour separately.</p></div></li><li><div><strong>Feed.</strong><p>Stir 50 g starter, 20 g KA GF flour, 100 g flour mix and 120 g water together until smooth. Mark the level on the jar.</p></div></li><li><div><strong>Wait for peak.</strong><p>Leave it covered at room temperature until it&#x27;s bubbly, domed and well risen. Use it at or just before peak.</p></div></li></ol><p class="foot">This makes about 290 g. The dough uses 80 g, so about 210 g is left to keep and feed next time.</p></section><section><h4>Ingredients</h4><div class="tbl"><table><thead><tr><th>Ingredient</th><th class="num">Grams</th><th class="num">Baker’s %</th></tr></thead><tbody><tr class="grp"><td colspan="3">Flour blend · 360 g</td></tr><tr><td>King Arthur Gluten-Free flour</td><td class="num">198</td><td class="num">55%</td></tr><tr><td>Tapioca starch</td><td class="num">90</td><td class="num">25%</td></tr><tr><td>Brown rice flour</td><td class="num">72</td><td class="num">20%</td></tr><tr class="grp"><td colspan="3">Everything else</td></tr><tr><td>Active GF starter, at peak (see Starter build)</td><td class="num">80</td><td class="num">22%</td></tr><tr><td>Psyllium husk powder</td><td class="num">15</td><td class="num">4.2%</td></tr><tr><td>Egg whites, 2 large</td><td class="num">~60</td><td class="num">17%</td></tr><tr><td>Water, plus more only if stiff</td><td class="num">260</td><td class="num">72%</td></tr><tr><td>Salt</td><td class="num">7</td><td class="num">1.9%</td></tr></tbody></table></div><p class="foot">Baker&#x27;s % is against the 360 g flour blend. Hydration of ~88% counts the water, the starter&#x27;s water (100% starter, so 40 g water in 80 g) and the egg whites&#x27; water.</p></section><section><h4>Method</h4><ol class="steps"><li><div><strong>Gel the psyllium.</strong><p>Whisk the psyllium into the 260 g water right away so it doesn&#x27;t clump, then let it sit 10 minutes.</p></div></li><li><div><strong>Wet mix.</strong><p>Whisk in the egg whites and starter.</p></div></li><li><div><strong>Add dry.</strong><p>Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don&#x27;t add water yet.</p></div></li><li><div><strong>Rest.</strong><p>Cover and leave 30 minutes so the flours and psyllium hydrate. If the dough now feels stiff or cracks when pressed, work in water a tablespoon at a time.</p></div></li><li><div><strong>Shape.</strong><p>With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula.</p></div></li><li><div><strong>Warm rise.<span class="chg">Changed</span></strong><p>Cover and set it in the oven with only the light on (about 75–80°F). Let it rise about 25%: a gentle dome forms, and a fingertip dent springs back slowly. Don&#x27;t take it further, because it keeps rising in the fridge.</p></div></li><li><div><strong>Cold proof overnight.<span class="chg">New</span></strong><p>Move it, still covered, to the fridge at 38–40°F overnight.</p></div></li><li><div><strong>Preheat.<span class="chg">Changed</span></strong><p>In the morning, take the dough out of the fridge first, then heat the oven to 450°F (230°C) with the Dutch oven inside for 45–60 minutes. If the dough still looks flat once the oven is hot, leave it on the counter another 1–2 hours before baking.</p></div></li><li><div><strong>Score.<span class="chg">New</span></strong><p>Just before baking, dust the top with rice flour and make one confident slash about 1 cm deep, holding the blade at a shallow angle.</p></div></li><li><div><strong>Bake covered.</strong><p>Lower the loaf into the Dutch oven on its parchment, put the lid on, and bake 30 minutes at 450°F.</p></div></li><li><div><strong>Bake uncovered, cooler.<span class="chg">Changed</span></strong><p>Take the lid off and drop the oven to 425°F (220°C). Bake 10–15 minutes more, just until the inside reads 205–210°F (96–99°C), then pull it right away.</p><p class="aside">Was 20–25 minutes uncovered at 450°F.</p></div></li><li><div><strong>Soften the crust (optional).<span class="chg">New</span></strong><p>While it&#x27;s hot, brush the crust with a little oil or melted butter, then cool it under a clean towel. Once it&#x27;s fully cool, keep it in a bag.</p></div></li><li><div><strong>Cool.</strong><p>Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy.</p></div></li></ol></section></div></details><nav class="pager" aria-label="Step through trials"><a class="pg pg-new" href="#v1-4"><span>← Newer trial</span><b>v1.4</b></a><a class="pg pg-old" href="#v1-2"><span>Older trial →</span><b>v1.2</b></a></nav></article><article class="trial" id="v1-2" aria-labelledby="v1-2-h"><a class="back" href="#trials">← All trials</a><header class="t-head"><p class="kicker">· trial · 21 Nov 2026 ·</p><div class="t-title"><h2 id="v1-2-h">v1.2</h2><span class="pill pill-warn">Crust too hard</span></div><p class="t-lede">Starter feed gets 20 g KA GF flour and drops to 100% hydration.</p><dl class="meta"><div><dt>Yield</dt><dd>1 loaf</dd></div><div><dt>Hands-on</dt><dd>~30 min</dd></div><div><dt>Proof</dt><dd>2–4 h</dd></div><div><dt>Bake</dt><dd>45–55 min</dd></div><div><dt>Hydration</dt><dd>~88%</dd></div></dl></header><div class="nophoto"><span aria-hidden="true">✦</span> No photos from this bake.</div><section class="blk changed"><h3>What changed in v1.2</h3><ul><li><b>Starter feed now includes 20 g King Arthur GF flour.</b> The feed is 50 g starter + 20 g KA GF + 100 g flour mix (light buckwheat, sorghum and brown rice in equal thirds), so the starter gets 120 g fresh flour.</li><li><b>Starter hydration 110% → 100%.</b> Water now equals the fresh flour: 120 g (was 110 g). The feed makes about 290 g.</li><li><b>Dough hydration ~89% → ~88%.</b> 80 g of a 100% starter carries 40 g water instead of about 42 g. The dough recipe itself is unchanged.</li></ul><p class="why"><b>Why:</b> An updated starter routine. Everything else is exactly v1.1.</p><p class="builds">Everything else carries over from <a href="#v1">v1</a>.</p></section><section class="blk result"><h3>How it baked</h3><p>Crust very hard. Both loaves baked from this recipe came out this way, which led to the softer bake in v1.3.</p></section><details class="recipe"><summary><span>Full recipe for v1.2</span><span class="sum-hint">starter, ingredients, method</span></summary><div class="recipe-in"><section><h4>Starter build</h4><div class="tbl"><table><thead><tr><th>Starter feed</th><th class="num">Grams</th><th class="num">% of flour</th></tr></thead><tbody><tr><td>Starter (from the jar)</td><td class="num">50</td><td class="num">42%</td></tr><tr class="grp"><td colspan="3">Fresh flour · 120 g</td></tr><tr><td>King Arthur Gluten-Free flour<span class="chg">New</span></td><td class="num">20</td><td class="num">17%</td></tr><tr class="sub"><td colspan="3">Flour mix · 100 g, equal thirds:</td></tr><tr><td>Light buckwheat flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Sorghum flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Brown rice flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr class="grp"><td colspan="3">Water</td></tr><tr><td>Water<span class="chg">Changed</span><span class="was">was 110 g (110%)</span></td><td class="num">120</td><td class="num">100%</td></tr></tbody></table></div><ol class="steps"><li><div><strong>Mix the flour.</strong><p>Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest. Weigh the 20 g KA GF flour separately.</p></div></li><li><div><strong>Feed.</strong><p>Stir 50 g starter, 20 g KA GF flour, 100 g flour mix and 120 g water together until smooth. Mark the level on the jar.</p></div></li><li><div><strong>Wait for peak.</strong><p>Leave it covered at room temperature until it&#x27;s bubbly, domed and well risen. Use it at or just before peak.</p></div></li></ol><p class="foot">This makes about 290 g. The dough uses 80 g, so about 210 g is left to keep and feed next time.</p></section><section><h4>Ingredients</h4><div class="tbl"><table><thead><tr><th>Ingredient</th><th class="num">Grams</th><th class="num">Baker’s %</th></tr></thead><tbody><tr class="grp"><td colspan="3">Flour blend · 360 g</td></tr><tr><td>King Arthur Gluten-Free flour</td><td class="num">198</td><td class="num">55%</td></tr><tr><td>Tapioca starch</td><td class="num">90</td><td class="num">25%</td></tr><tr><td>Brown rice flour</td><td class="num">72</td><td class="num">20%</td></tr><tr class="grp"><td colspan="3">Everything else</td></tr><tr><td>Active GF starter, at peak (see Starter build)</td><td class="num">80</td><td class="num">22%</td></tr><tr><td>Psyllium husk powder</td><td class="num">15</td><td class="num">4.2%</td></tr><tr><td>Egg whites, 2 large</td><td class="num">~60</td><td class="num">17%</td></tr><tr><td>Water, plus more only if stiff</td><td class="num">260</td><td class="num">72%</td></tr><tr><td>Salt</td><td class="num">7</td><td class="num">1.9%</td></tr></tbody></table></div><p class="foot">Baker&#x27;s % is against the 360 g flour blend. Hydration of ~88% counts the water, the starter&#x27;s water (100% starter, so 40 g water in 80 g) and the egg whites&#x27; water.</p></section><section><h4>Method</h4><ol class="steps"><li><div><strong>Gel the psyllium.</strong><p>Whisk the psyllium into the 260 g water right away so it doesn&#x27;t clump, then let it sit 10 minutes.</p></div></li><li><div><strong>Wet mix.</strong><p>Whisk in the egg whites and starter.</p></div></li><li><div><strong>Add dry.</strong><p>Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don&#x27;t add water yet.</p></div></li><li><div><strong>Rest.</strong><p>Cover and leave 30 minutes so the flours and psyllium hydrate. If the dough now feels stiff or cracks when pressed, work in water a tablespoon at a time.</p></div></li><li><div><strong>Shape.</strong><p>With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula.</p></div></li><li><div><strong>Proof.</strong><p>Cover and leave at room temperature until it has risen about 50%, usually 2–4 hours depending on the starter and kitchen. Don&#x27;t over-proof, because GF dough collapses.</p></div></li><li><div><strong>Preheat.</strong><p>Heat the oven to 450°F (230°C) with a Dutch oven inside, if using one. For a loaf pan, use 425°F (220°C).</p></div></li><li><div><strong>Score and bake.</strong><p>Score the top. In a Dutch oven, bake covered 30 minutes, then uncovered 20–25 minutes. In a loaf pan, bake 45–55 minutes, tenting with foil if it browns too fast.</p></div></li><li><div><strong>Check doneness.</strong><p>The internal temperature should be 205–210°F (96–99°C).</p></div></li><li><div><strong>Cool.</strong><p>Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy.</p></div></li></ol></section></div></details><nav class="pager" aria-label="Step through trials"><a class="pg pg-new" href="#v1-3"><span>← Newer trial</span><b>v1.3</b></a><a class="pg pg-old" href="#v1"><span>Older trial →</span><b>v1</b></a></nav></article><article class="trial" id="v1" aria-labelledby="v1-h"><a class="back" href="#trials">← All trials</a><header class="t-head"><p class="kicker">· trial · 20 Nov 2026 ·</p><div class="t-title"><h2 id="v1-h">v1</h2><span class="pill pill-pending">Not baked</span></div><p class="t-lede">Psyllium husk replaces ground flax, and the water drops to 260 g.</p><dl class="meta"><div><dt>Yield</dt><dd>1 loaf</dd></div><div><dt>Hands-on</dt><dd>~30 min</dd></div><div><dt>Proof</dt><dd>2–4 h</dd></div><div><dt>Bake</dt><dd>45–55 min</dd></div><div><dt>Hydration</dt><dd>~88%</dd></div></dl></header><div class="nophoto"><span aria-hidden="true">✦</span> This recipe wasn't baked, so there are no photos.</div><section class="blk changed"><h3>What changed in v1</h3><ul><li><b>Ground flax 18 g → psyllium husk powder 15 g.</b> Gel it in the water for 10 minutes, the same way as the flax. Psyllium gives GF dough a stretchy, shapeable body, so it should hold gas and keep its rise.</li><li><b>Water 290 g → 260 g to start.</b> Psyllium firms up as it sits, so add water back only if the dough is stiff after the 30-minute rest.</li></ul><p class="why"><b>Why:</b> v0 didn&#x27;t rise enough and was too sticky to shape. Both point to too little structure. Everything else is unchanged, to see what these two changes do.</p><p class="builds">Everything else carries over from <a href="#v0">v0</a>.</p></section><section class="blk fold"><h3>v1.1 · 21 Nov 2026</h3><p>The starter feed was added to the card: 50 g starter + 100 g flour mix + 110 g water (110% hydration), with the flour mix in equal thirds of light buckwheat, sorghum and brown rice flour. With a 110% starter, overall hydration is ~89% instead of ~88%. The dough itself didn&#x27;t change.</p></section><section class="blk result"><h3>How it baked</h3><p>Not baked. The next loaves were made from v1.2.</p></section><details class="recipe"><summary><span>Full recipe for v1</span><span class="sum-hint">starter, ingredients, method</span></summary><div class="recipe-in"><section><h4>Starter build (added in v1.1)</h4><div class="tbl"><table><thead><tr><th>Starter feed</th><th class="num">Grams</th><th class="num">% of flour</th></tr></thead><tbody><tr><td>Starter (from the jar)</td><td class="num">50</td><td class="num">50%</td></tr><tr class="grp"><td colspan="3">Flour mix · 100 g</td></tr><tr><td>Light buckwheat flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Sorghum flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr><td>Brown rice flour</td><td class="num">~33</td><td class="num">⅓</td></tr><tr class="grp"><td colspan="3">Water</td></tr><tr><td>Water</td><td class="num">110</td><td class="num">110%</td></tr></tbody></table></div><ol class="steps"><li><div><strong>Mix the flour.</strong><p>Combine equal parts light buckwheat, sorghum and brown rice flour. Mixing a bigger batch ahead and weighing 100 g from it is easiest.</p></div></li><li><div><strong>Feed.</strong><p>Stir 50 g starter, 100 g flour mix and 110 g water together until smooth. Mark the level on the jar.</p></div></li><li><div><strong>Wait for peak.</strong><p>Leave it covered at room temperature until it&#x27;s bubbly, domed and well risen. Use it at or just before peak.</p></div></li></ol><p class="foot">This makes about 260 g. The dough uses 80 g, so about 180 g is left to keep and feed next time.</p></section><section><h4>Ingredients</h4><div class="tbl"><table><thead><tr><th>Ingredient</th><th class="num">Grams</th><th class="num">Baker’s %</th></tr></thead><tbody><tr class="grp"><td colspan="3">Flour blend · 360 g</td></tr><tr><td>King Arthur Gluten-Free flour</td><td class="num">198</td><td class="num">55%</td></tr><tr><td>Tapioca starch</td><td class="num">90</td><td class="num">25%</td></tr><tr><td>Brown rice flour</td><td class="num">72</td><td class="num">20%</td></tr><tr class="grp"><td colspan="3">Everything else</td></tr><tr><td>Active GF starter</td><td class="num">80</td><td class="num">22%</td></tr><tr><td>Psyllium husk powder<span class="chg">New</span><span class="was">was ground flax, 18 g</span></td><td class="num">15</td><td class="num">4.2%</td></tr><tr><td>Egg whites, 2 large</td><td class="num">~60</td><td class="num">17%</td></tr><tr><td>Water, plus more only if stiff<span class="chg">Changed</span><span class="was">was 290 g</span></td><td class="num">260</td><td class="num">72%</td></tr><tr><td>Salt</td><td class="num">7</td><td class="num">1.9%</td></tr></tbody></table></div><p class="foot">Baker&#x27;s % is against the 360 g flour blend. Hydration of ~88% counts the water, the starter&#x27;s water (assuming a 100% starter) and the egg whites&#x27; water.</p></section><section><h4>Method</h4><ol class="steps"><li><div><strong>Gel the psyllium.</strong><p>Whisk the psyllium into the 260 g water right away so it doesn&#x27;t clump, then let it sit 10 minutes.</p></div></li><li><div><strong>Wet mix.</strong><p>Whisk in the egg whites and starter.</p></div></li><li><div><strong>Add dry.</strong><p>Whisk the three flours and salt together, then mix them in until no dry spots remain. The dough should be thick and cohesive. It will firm up as it rests, so don&#x27;t add water yet.</p></div></li><li><div><strong>Rest.</strong><p>Cover and leave 30 minutes so the flours and psyllium hydrate. If the dough now feels stiff or cracks when pressed, work in water a tablespoon at a time.</p></div></li><li><div><strong>Shape.</strong><p>With wet hands, shape it and set it in a parchment-lined banneton or loaf pan. Smooth the top with a wet spatula.</p></div></li><li><div><strong>Proof.</strong><p>Cover and leave at room temperature until it has risen about 50%, usually 2–4 hours depending on the starter and kitchen. Don&#x27;t over-proof, because GF dough collapses.</p></div></li><li><div><strong>Preheat.</strong><p>Heat the oven to 450°F (230°C) with a Dutch oven inside, if using one. For a loaf pan, use 425°F (220°C).</p></div></li><li><div><strong>Score and bake.</strong><p>Score the top. In a Dutch oven, bake covered 30 minutes, then uncovered 20–25 minutes. In a loaf pan, bake 45–55 minutes, tenting with foil if it browns too fast.</p></div></li><li><div><strong>Check doneness.</strong><p>The internal temperature should be 205–210°F (96–99°C).</p></div></li><li><div><strong>Cool.</strong><p>Let it cool on a rack for at least 2 hours before cutting. Cutting early makes it gummy.</p></div></li></ol></section></div></details><nav class="pager" aria-label="Step through trials"><a class="pg pg-new" href="#v1-2"><span>← Newer trial</span><b>v1.2</b></a><a class="pg pg-old" href="#v0"><span>Older trial →</span><b>v0</b></a></nav></article><article class="trial" id="v0" aria-labelledby="v0-h"><a class="back" href="#trials">← All trials</a><header class="t-head"><p class="kicker">· baseline · 20 Nov 2026 ·</p><div class="t-title"><h2 id="v0-h">v0</h2><span class="pill pill-warn">Not enough rise</span></div><p class="t-lede">The starting recipe, with ground flax and 290 g water.</p><dl class="meta"><div><dt>Yield</dt><dd>1 loaf</dd></div><div><dt>Proof</dt><dd>2–4 h</dd></div><div><dt>Bake</dt><dd>50–55 min</dd></div><div><dt>Hydration</dt><dd>~95%</dd></div></dl></header><div class="nophoto"><span aria-hidden="true">✦</span> No photos from this bake.</div><section class="blk changed"><h3>Where it started</h3><p class="why">The recipe the trials started from, summarised from the original notes.</p></section><section class="blk result"><h3>How it baked</h3><p>Not enough rise. Dough too sticky to shape. This led to the psyllium swap and less water in v1.</p></section><details class="recipe"><summary><span>Full recipe for v0</span><span class="sum-hint">starter, ingredients, method</span></summary><div class="recipe-in"><section><h4>Ingredients</h4><div class="tbl"><table><thead><tr><th>Ingredient</th><th class="num">Grams</th><th class="num">Baker’s %</th></tr></thead><tbody><tr class="grp"><td colspan="3">Flour blend · 360 g</td></tr><tr><td>King Arthur Gluten-Free flour</td><td class="num">198</td><td class="num">55%</td></tr><tr><td>Tapioca starch</td><td class="num">90</td><td class="num">25%</td></tr><tr><td>Brown rice flour</td><td class="num">72</td><td class="num">20%</td></tr><tr class="grp"><td colspan="3">Everything else</td></tr><tr><td>Active GF starter</td><td class="num">80</td><td class="num">22%</td></tr><tr><td>Ground flax</td><td class="num">18</td><td class="num">5%</td></tr><tr><td>Egg whites, 2 large</td><td class="num">~60</td><td class="num">17%</td></tr><tr><td>Water, plus more as needed</td><td class="num">290</td><td class="num">81%</td></tr><tr><td>Salt</td><td class="num">7</td><td class="num">1.9%</td></tr></tbody></table></div><p class="foot">Hydration of roughly 95% counts the water, the starter&#x27;s water and the egg whites&#x27; water.</p></section><section><h4>Method</h4><ol class="steps"><li><div><strong>Flax gel.</strong><p>Stir the ground flax into the water and leave 10 minutes.</p></div></li><li><div><strong>Wet mix.</strong><p>Whisk in the egg whites and starter.</p></div></li><li><div><strong>Add dry.</strong><p>Mix in the three flours and the salt.</p></div></li><li><div><strong>Rest.</strong><p>Cover and leave 30 minutes.</p></div></li><li><div><strong>Shape.</strong><p>With wet hands, shape into a banneton or loaf pan.</p></div></li><li><div><strong>Proof.</strong><p>Leave until it has risen about 50%, usually 2–4 hours.</p></div></li><li><div><strong>Bake.</strong><p>Dutch oven at 450°F (230°C): 30 minutes covered, then 20–25 minutes uncovered. Or a loaf pan at 425°F (220°C) for 45–55 minutes.</p></div></li><li><div><strong>Check doneness.</strong><p>The internal temperature should be 205–210°F (96–99°C).</p></div></li><li><div><strong>Cool.</strong><p>Cool at least 2 hours before cutting.</p></div></li></ol></section></div></details><nav class="pager" aria-label="Step through trials"><a class="pg pg-new" href="#v1"><span>← Newer trial</span><b>v1</b></a><span class="pg pg-none"></span></nav></article>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+  var home = document.getElementById('trials');
+  var trials = [].slice.call(document.querySelectorAll('.trial'));
+  var ids = trials.map(function (t) { return t.id; });
+  var first = true;
+  function show() {
+    var id = (location.hash || '').slice(1);
+    var isTrial = ids.indexOf(id) !== -1;
+    home.hidden = isTrial;
+    trials.forEach(function (t) { t.hidden = t.id !== id; });
+    if (!first) window.scrollTo(0, 0);
+    first = false;
+    if (isTrial) {
+      var h = document.getElementById(id + '-h');
+      if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+    }
+  }
+  window.addEventListener('hashchange', show);
+  show();
+})();
+
+</script>
