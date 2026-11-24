@@ -1,125 +1,23 @@
 'use client';
 
-import React, { useEffect, useRef, useState, ReactNode, CSSProperties } from 'react';
-
-// ---------- atoms ----------
-const Paper = ({ children, style }: { children: ReactNode; style?: CSSProperties }) => (
-  <div style={{
-    backgroundColor: "#e8dcc4",
-    backgroundImage: `
-      radial-gradient(circle at 12% 18%, rgba(80,50,20,0.06) 0px, transparent 2px),
-      radial-gradient(circle at 78% 42%, rgba(80,50,20,0.05) 0px, transparent 1.5px),
-      radial-gradient(circle at 33% 78%, rgba(80,50,20,0.07) 0px, transparent 2px),
-      radial-gradient(circle at 88% 88%, rgba(80,50,20,0.04) 0px, transparent 1.5px),
-      radial-gradient(circle at 50% 30%, rgba(80,50,20,0.04) 0px, transparent 1.5px),
-      radial-gradient(circle at 22% 55%, rgba(80,50,20,0.05) 0px, transparent 2px),
-      radial-gradient(ellipse at top left, rgba(255,240,210,0.5), transparent 60%),
-      radial-gradient(ellipse at bottom right, rgba(60,30,10,0.08), transparent 60%)
-    `,
-    color: "#2a1f17",
-    fontFamily: "'Work Sans', sans-serif",
-    ...style
-  }}>{children}</div>
-);
-
-const Tape = ({ rotate = -3, top, left, right, bottom, width = 110, height = 28, color = "rgba(220, 200, 140, 0.78)", zIndex = 5 }: {
-  rotate?: number; top?: number | string; left?: number | string; right?: number | string; bottom?: number | string;
-  width?: number; height?: number; color?: string; zIndex?: number;
-}) => (
-  <div style={{
-    position: "absolute", top, left, right, bottom, width, height,
-    backgroundColor: color,
-    backgroundImage: "repeating-linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,0.18) 14px 16px)",
-    transform: `rotate(${rotate}deg)`,
-    boxShadow: "0 2px 6px rgba(0,0,0,0.12)",
-    borderLeft: "1px dashed rgba(120,90,40,0.25)",
-    borderRight: "1px dashed rgba(120,90,40,0.25)",
-    zIndex
-  }} />
-);
-
-const Stamp = ({ children, rotate = -8, color = "#a64b2a", style }: {
-  children: ReactNode; rotate?: number; color?: string; style?: CSSProperties;
-}) => (
-  <div style={{
-    display: "inline-block",
-    border: `2.5px solid ${color}`,
-    color, padding: "6px 14px",
-    fontFamily: "'DM Serif Display', serif",
-    fontSize: 14, letterSpacing: "0.18em", textTransform: "uppercase",
-    transform: `rotate(${rotate}deg)`,
-    opacity: 0.82,
-    ...style
-  }}>{children}</div>
-);
-
-// ---------- doodles ----------
-const WheatDoodle = ({ size = 60, color = "#5a4a32", style }: { size?: number; color?: string; style?: CSSProperties }) => (
-  <svg width={size} height={size * 1.4} viewBox="0 0 60 84" style={style}>
-    <line x1="30" y1="10" x2="30" y2="78" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-    {[20, 32, 44, 56].map((y, i) => (
-      <g key={i}>
-        <ellipse cx="22" cy={y} rx="5" ry="3" fill="none" stroke={color} strokeWidth="1.2" transform={`rotate(-25 22 ${y})`}/>
-        <ellipse cx="38" cy={y} rx="5" ry="3" fill="none" stroke={color} strokeWidth="1.2" transform={`rotate(25 38 ${y})`}/>
-      </g>
-    ))}
-  </svg>
-);
-
-const LoafDoodle = ({ size = 80, color = "#5a4a32", style }: { size?: number; color?: string; style?: CSSProperties }) => (
-  <svg width={size} height={size * 0.7} viewBox="0 0 80 56" style={style}>
-    <path d="M 8 40 Q 8 14 40 12 Q 72 14 72 40 Q 72 48 40 48 Q 8 48 8 40 Z"
-      fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
-    <path d="M 22 22 Q 28 18 34 22" fill="none" stroke={color} strokeWidth="1.2" strokeLinecap="round"/>
-    <path d="M 40 20 Q 46 16 52 20" fill="none" stroke={color} strokeWidth="1.2" strokeLinecap="round"/>
-    <path d="M 28 30 Q 34 26 40 30" fill="none" stroke={color} strokeWidth="1.2" strokeLinecap="round"/>
-  </svg>
-);
-
-const Arrow = ({ size = 100, color = "#a64b2a", rotate = 0, style, flip }: {
-  size?: number; color?: string; rotate?: number; style?: CSSProperties; flip?: boolean;
-}) => (
-  <svg width={size} height={size * 0.6} viewBox="0 0 100 60" style={{ transform: `rotate(${rotate}deg) ${flip ? 'scaleX(-1)' : ''}`, ...style }}>
-    <path d="M 6 30 Q 30 8 56 28 T 92 32" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
-    <path d="M 86 24 L 92 32 L 84 36" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-const StarDoodle = ({ size = 32, color = "#a64b2a", style }: { size?: number; color?: string; style?: CSSProperties }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" style={style}>
-    <path d="M 16 4 L 16 28 M 4 16 L 28 16 M 7 7 L 25 25 M 25 7 L 7 25" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>
-);
-
-const Squiggle = ({ width = 120, color = "#7a8b5c", style }: { width?: number; color?: string; style?: CSSProperties }) => (
-  <svg width={width} height={20} viewBox="0 0 120 20" style={style}>
-    <path d="M 4 10 Q 14 2 24 10 T 44 10 T 64 10 T 84 10 T 104 10 T 116 10" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
-  </svg>
-);
-
-// ---------- scroll reveal ----------
-const Reveal = ({ children, delay = 0, y = 24, style }: {
-  children: ReactNode; delay?: number; y?: number; style?: CSSProperties;
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    if (!ref.current) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setVisible(true); io.disconnect(); }
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-    io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <div ref={ref} style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : `translateY(${y}px)`,
-      transition: `opacity 0.8s ease ${delay}ms, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) ${delay}ms`,
-      ...style
-    }}>{children}</div>
-  );
-};
+import React, { useState } from 'react';
+import Link from 'next/link';
+import {
+  Paper,
+  Tape,
+  Stamp,
+  WheatDoodle,
+  LoafDoodle,
+  Arrow,
+  StarDoodle,
+  Squiggle,
+  Reveal,
+  SiteFooter,
+  useScrapbookFonts,
+  useIsMobile,
+  colors,
+} from '@/components/scrapbook';
+import { getCurrentBest, getUpNext } from '@/lib/gf-trials';
 
 // ---------- loaf card with hover ----------
 type Loaf = { name: string; level: string; note: string; time: string; weight: string };
@@ -380,29 +278,17 @@ const HeroCollage = ({ isMobile }: { isMobile: boolean }) => {
 // MAIN
 // ============================================================
 const DirectionA = () => {
-  const ink = "#2a1f17";
-  const rust = "#a64b2a";
-  const sage = "#7a8b5c";
-  const muted = "#5a4a32";
+  const ink = colors.ink;
+  const rust = colors.rust;
+  const sage = colors.sage;
+  const muted = colors.muted;
 
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const [mobileLoafIndex, setMobileLoafIndex] = useState(0);
+  const currentBest = getCurrentBest();
+  const upNext = getUpNext();
 
-  useEffect(() => {
-    if (document.getElementById("dirA-fonts")) return;
-    const l = document.createElement("link");
-    l.id = "dirA-fonts";
-    l.rel = "stylesheet";
-    l.href = "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@300;400;500;600&family=Caveat:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap";
-    document.head.appendChild(l);
-  }, []);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  useScrapbookFonts();
 
   const loaves: Loaf[] = [
     { name: "Cinnamon raisin", level: "sweet & spiced", note: "Soft crumb with a cinnamon swirl and plenty of plump raisins — weekend toast energy.", time: "24 hr", weight: "900g · 78% hyd." },
@@ -420,8 +306,6 @@ const DirectionA = () => {
   const goToNextLoaf = () => {
     setMobileLoafIndex((current) => (current + 1) % loaves.length);
   };
-
-  const px = (desktop: string | number, mobile: string | number) => isMobile ? mobile : desktop;
 
   return (
     <Paper style={{ width: "100%", minHeight: 3600, position: "relative", overflow: "hidden" }}>
@@ -923,6 +807,64 @@ const DirectionA = () => {
         </section>
       </Reveal>
 
+      {/* GLUTEN-FREE TRIALS — section 05 */}
+      <Reveal>
+        <section style={{
+          margin: isMobile ? "32px 24px" : "60px 120px",
+          padding: isMobile ? "40px 24px" : "56px",
+          backgroundColor: colors.lightPaper,
+          position: "relative",
+          boxShadow: "0 4px 18px rgba(0,0,0,0.08)"
+        }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: "0.25em", color: rust, marginBottom: 12 }}>
+            · 05 · GLUTEN-FREE TRIALS ·
+          </div>
+          <Link
+            href="/gluten-free"
+            style={{
+              display: "block",
+              color: "inherit",
+              textDecoration: "none"
+            }}
+          >
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 40 : 56, margin: "0 0 18px", fontWeight: 400, lineHeight: 1.05 }}>
+              Gluten-free, <span style={{ fontStyle: "italic", color: rust }}>slowly.</span>
+            </h2>
+            <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.7, margin: "0 0 28px", maxWidth: 560, color: muted }}>
+              Working toward a gluten-free sourdough loaf, one trial at a time. These loaves use their own gluten-free starter, not Oho.
+            </p>
+            <div style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: isMobile ? 16 : 36,
+              marginBottom: 28,
+              paddingTop: 18,
+              borderTop: `1px solid rgba(60,30,10,0.18)`
+            }}>
+              <div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: muted, marginBottom: 6 }}>
+                  Current best
+                </div>
+                <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 18 : 22 }}>
+                  {currentBest ? `${currentBest.version} · best loaf yet` : "—"}
+                </div>
+              </div>
+              <div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: muted, marginBottom: 6 }}>
+                  Up next
+                </div>
+                <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 18 : 22 }}>
+                  {upNext ? `${upNext.version} · not baked yet` : "—"}
+                </div>
+              </div>
+            </div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: "0.12em", color: rust }}>
+              see every trial →
+            </div>
+          </Link>
+        </section>
+      </Reveal>
+
       {/* CONTACT */}
       <Reveal>
         <section style={{
@@ -979,24 +921,7 @@ const DirectionA = () => {
         </section>
       </Reveal>
 
-      {/* FOOTER */}
-      <div style={{
-        padding: isMobile ? "24px 24px" : "32px 120px",
-        borderTop: `1px solid rgba(60,30,10,0.2)`,
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        justifyContent: "space-between",
-        alignItems: isMobile ? "center" : undefined,
-        gap: isMobile ? 8 : 0,
-        fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: muted,
-        textAlign: isMobile ? "center" : undefined
-      }}>
-        <span>© CrispyCrustBoule · MMXXVI</span>
-        <span style={{ fontFamily: "'Caveat', cursive", textTransform: "none", letterSpacing: 0, fontSize: 18, color: rust }}>
-          sourdough done right ✦
-        </span>
-        <span>made with flour</span>
-      </div>
+      <SiteFooter isMobile={isMobile} />
     </Paper>
   );
 };
